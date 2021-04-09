@@ -21,7 +21,7 @@ lab:
 3. 克隆存储库后，在 Visual Studio Code 中打开文件夹。
 4. 等待其他文件安装完毕，以支持存储库中的 C# 代码项目。
 
-    > **备注**：如果系统提示你添加生成和调试所需的资产，请选择**“以后再说”**。
+    > **备注**：如果系统提示你添加生成和调试所需的资产，请选择 **“以后再说”**。
 
 ## 创建 Azure 资源
 
@@ -63,7 +63,7 @@ lab:
 
 1. 返回 Azure 门户的主页，然后选择 **“&#65291;创建认知服务资源”** 按钮，搜索 **“存储帐户”**，并使用以下设置创建*存储帐户*资源：
     - **订阅**：*你的 Azure 订阅*
-    - **资源组**：**与你的 Azure 认知搜索和认知服务资源相同的资源组*
+    - **资源组**： *与你的 Azure 认知搜索和认知服务资源相同的资源组*
     - **存储帐户名称**：*输入唯一名称*
     - **位置**：*选择任何可用位置*
     - **性能**：标准
@@ -188,7 +188,7 @@ Web 浏览器标签页随即打开，并提示你登录到 Azure。按照提示�
     search="New York"&$count=true&$select=metadata_storage_name&$filter=metadata_author eq 'Reviewer'
     ```
 
-    此查询将返回作者为 Reviewer** 且提及“New York”的任何文档的文件名。
+    此查询将返回作者为 *Reviewer* 且提及“New York”的任何文档的文件名。
 
 ## 浏览并修改搜索组件的定义
 
@@ -198,7 +198,7 @@ Web 浏览器标签页随即打开，并提示你登录到 Azure。按照提示�
 
 ### 获取 Azure 认知搜索资源的终结点和密钥
 
-1. 在 Azure 门户中，返回到 Azure 认知搜索资源的 **“概述”** 页；在页面顶部找到资源的 **Url** （类似 **https://resource_name.search.windows.net**）并将其复制到剪贴板。
+1. 在 Azure 门户中，返回到 Azure 认知搜索资源的 **“概述”** 页；在页面顶部找到资源的 **Url** （类似 **https://resource_name.search.windows.net** ） 并将其复制到剪贴板。
 2. 在 Visual Studio Code 中的 “Explorer” 窗格中，展开 **“22-create-a-search-solution”** 文件夹及其 **“modify-search”** 子文件夹，并选择 **“modify-search.cmd”** 来打开它。你将使用此脚本文件来运行 *cURL* 命令，将 JSON 提交给 Azure 认知服务 REST 接口。
 3. 在 **modify-search.cmd** 中，将 **YOUR_SEARCH_URL** 占位符替换为你复制到剪贴板的 URL。
 4. 在 Azure 门户中，查看你的 Azure 认知搜索资源的 **“密钥”** 页面，并将 **“主管理密钥”** 复制到剪贴板。
@@ -413,7 +413,7 @@ Web 浏览器标签页随即打开，并提示你登录到 Azure。按照提示�
     flask run
     ```
 
-2. 应用成功启动时显示的消息，后跟正在运行的 web 应用程序的链接（*http://localhost:5000/* 或 *http://127.0.0.1:5000/*），用于在 web 浏览器中打开 Margies Travel 站点。
+2. 应用成功启动时显示的消息，后跟正在运行的 web 应用程序的链接（*http://localhost:5000/* 或 *http://127.0.0.1:5000/* ），用于在 web 浏览器中打开 Margies Travel 站点。
 3. 在 Margie's Travel 网站上，在搜索框中输入 **“London hotel”** 并单击 **“搜索”**。
 4. 查看搜索结果。其中包含文件名（以及指向文件 URL 的超链接）、强调了搜索词（*London* 和 *hotel*）的文件内容提取项，以及来自索引字段的其他文件属性。
 5. 观察结果页包含某些可用于精炼结果的用户界面元素。这些格式包括：

@@ -67,7 +67,7 @@ lab:
 dotnet add package Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime --version 3.0.0
 ```
 
-*除了**运行时** （预测）包以外，还有一个创作包，能**编写**用于创建和管理语言理解模型的代码*。*
+*除了**运行时** （预测）包以外，还有一个创作包，能**编写**用于创建和管理语言理解模型的代码。*
 
 **Python**
 

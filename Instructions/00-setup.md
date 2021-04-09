@@ -46,7 +46,7 @@ pip install --upgrade numpy
 
 ### Azure CLI
 
-1. 从 https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest 下载 
+1. 从 https://docs.microsoft.com/zh-cn/cli/azure/install-azure-cli?view=azure-cli-latest 下载 
 2. 使用默认选项进行安装
 
 ### Git
@@ -71,4 +71,4 @@ pip install --upgrade numpy
 
 ### Bot Framework Composer
 
-从 https://docs.microsoft.com/en-us/composer/install-composer 安装。
+从 https://docs.microsoft.com/zh-cn/composer/install-composer 安装。

@@ -55,16 +55,16 @@ QnA Maker 是一项认知服务，通过该服务，你能够创建可使用自�
 你的知识库已填充了 Microsoft Learn FAQ 中的问答对，并补充了一组对话式聊天问答对。可以通过添加更多问答对来扩展知识库。
 
 1. 在知识库中，选择 **“&#65291; 添加 QnA 对”**。
-2. 在 **“问题”** 框中，键入 `什么是 Microsoft 认证？`
-3. 选择 **“65291; 添加替代措词”**，然后键入 `我如何证明我的 Microsoft 技术技能？`。
-4. 在 **“答案”** 框中，键入 `Microsoft 认证专家计划使你能够验证和证明你的 Microsoft 技术技能。`
+2. 在 **“问题”** 框中，键入 `What is Microsoft certification?`
+3. 选择 **“65291; 添加替代措词”**，然后键入 `How can I demonstrate my Microsoft technology skills?`。
+4. 在 **“答案”** 框中，键入 `The Microsoft Certified Professional program enables you to validate and prove your skills with Microsoft technologies.`
 
     在某些情况下，使用户能够跟进答案以创建*多回合*对话是有意义的，这使用户能够以迭代方式细化问题，从而得到他们所需的答案。
 
 5. 在你输入的关于认证问题的答案下，选择 **“65291; 添加跟进提示”**。
 6. 在 **“跟进提示”** 对话框中，输入以下设置：
-    - **显示文本**：`详细了解认证。`
-    - **链接到 QnA**\*：`可以在 [Microsoft 认证页面](https://docs.microsoft.com/learn/certifications/)上详细了解认证。`
+    - **显示文本**：`Learn more about certification.`
+    - **链接到 QnA**\*：`You can learn more about certification on the [Microsoft certification page](https://docs.microsoft.com/learn/certifications/).`
     - **仅上下文**： 已选择。*此选项可确保仅在原始认证问题的跟进问题的上下文中返回答案。*
 
     \*通过在 **“链接到 QnA”** 框中键入内容来在知识库中搜索现有的答案。如果找不到匹配项，则默认为创建新的 QnA 对。请注意，在此处键入的文本为 Markdown 格式。
@@ -107,7 +107,7 @@ QnA Maker 是一项认知服务，通过该服务，你能够创建可使用自�
   - **资源组**： *包含 QnA Maker 资源的资源组*
   - **位置**： *与 QnA Maker 服务相同的位置*。
   - **定价层**： F0
-  - **应用名称**：*与自动附加了 *azurewebsites.net* 的**机器人句柄**相同
+  - **应用名称**：与自动附加了 *azurewebsites.net* 的**机器人句柄**相同
   - **SDK 语言**：*选择 C# 或 Node.js*
   - **QnA 身份验证密钥**： *这应该自动设置为 QnA 知识库的身份验证密钥*
   - **应用服务计划/位置**：*如果存在，可以自动将其设置为合适的计划和位置。如果不存在，请创建一个新计划*

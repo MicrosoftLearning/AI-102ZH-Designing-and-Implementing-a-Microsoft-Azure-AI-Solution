@@ -13,7 +13,7 @@ lab:
 
 在本练习中，你将使用这两种 API 来实现语音时钟应用程序。
 
-    > **备注**：此练习需要使用配有麦克风和扬声器/耳机的计算机。
+> **备注**：此练习需要使用配有麦克风和扬声器/耳机的计算机。
 
 ## 克隆本课程的存储库
 
@@ -45,7 +45,7 @@ lab:
 
 在此练习中，你将完成一个已部分实现的客户端应用程序，该应用程序使用语音 SDK 来识别和合成语音。
 
-    > **备注**： 可选择将该 SDK 用于 **C#** 或 **Python**。在下面的步骤中，请执行适用于你的语言首选项的操作。
+> **备注**： 可选择将该 SDK 用于 **C#** 或 **Python**。在下面的步骤中，请执行适用于你的语言首选项的操作。
 
 1. 在 Visual Studio Code 的 **“资源管理器”** 窗格中，浏览到 **07-speech** 文件夹，并根据你的语言首选项展开 **C-Sharp**  文件夹或 **Python** 文件夹。
 2. 右键单击 **speaking-clock** 文件夹，并打开集成终端。然后通过运行适用于你的语言首选项的命令，安装语音 SDK 包：
@@ -206,7 +206,7 @@ lab:
 
 5. 出现提示时，对着麦克风清晰地说出“what time is it?”。程序应转录你的语音输入并显示时间（基于运行代码的计算机的本地时间，此时间可能并非你所在位置的正确时间）。再次出现提示时，说“stop”以结束程序。
 
-    > **备注**： *SpeechRecognizer 会为你提供大约 5 秒钟的说话时间。*如果它未检测到任何语音输入，则会生成“无匹配”结果。由于应用程序中的代码使用默认命令“stop”，因此程序将终止。*
+    > **备注**： *SpeechRecognizer 会为你提供大约 5 秒钟的说话时间。 如果它未检测到任何语音输入，则会生成“无匹配”结果。由于应用程序中的代码使用默认命令“stop”，因此程序将终止。*
     > 
     > *如果 SpeechRecognizer 遇到错误，它将生成“已取消”结果。然后，应用程序中的代码将显示错误消息。最可能的原因是配置文件中的密钥或区域不正确。*
 
@@ -275,7 +275,7 @@ lab:
 
 语音时钟应用程序使用可更改的默认语音。语音服务支持一系列*标准*语音，以及更类似于人的*神经*语音。此外，还可以创建自*定义*语音。
 
-    > **备注**： 有关神经语音和标准语音的列表，请参阅语音服务文档中的[语言和语音支持](https://docs.microsoft.com/azure/cognitive-services/speech-service/language-support#text-    to-speech)。  标准语音、神经语音和自定义语音的可用性因区域而异。有关更多详细信息，请参阅 [语音服务支持的区域]    (https://docs.microsoft.com/azure/cognitive-services/speech-service/regions#standard-and-neural-voices)。
+> **备注**： 有关神经语音和标准语音的列表，请参阅语音服务文档中的[语言和语音支持](https://docs.microsoft.com/azure/cognitive-services/speech-service/language-support#text-    to-speech)。  标准语音、神经语音和自定义语音的可用性因区域而异。有关更多详细信息，请参阅 [语音服务支持的区域]    (https://docs.microsoft.com/azure/cognitive-services/speech-service/regions#standard-and-neural-voices)。
 
 1. 在 **TellTime** 函数的注释 **“配置语音合成”** 下，按如下方式修改代码以指定替代语音，然后再创建 **SpeechSynthesizer** 客户端：
 
@@ -322,7 +322,7 @@ lab:
     ```C#
     // 合成语音输出
     string responseSsml = $@"
-        <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>
+        <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-cn'>
             <voice name='en-GB-Susan'>
                 {responseText}
                 <break strength='weak'/>
@@ -341,7 +341,7 @@ lab:
     ```Python
     # 合成语音输出
     responseSsml = " \
-        <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'> \
+        <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='zh-cn'> \
             <voice name='en-GB-Susan'> \
                 {} \
                 <break strength='weak'/> \

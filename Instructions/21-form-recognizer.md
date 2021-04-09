@@ -46,9 +46,9 @@ lab:
 
 1. 在 Visual Studio Code 中，在 **21-custom-form** 文件夹中展开 **sample-forms** 文件夹。注意该文件夹中有以 **json** 和 **jpg** 结尾的文件。
 
-    你将使用 **jpg** 文件不使用标签训练第一个模型。__  
+    你将使用 **jpg** 文件 _不_ 使用标签训练第一个模型。  
 
-    稍后，你将使用以 **json** 和 **jpg** 结尾的文件，使用标签创建模型。**__json** 文件是预先生成的，包含标签信息。若要使用标签训练，你需要在 blob 存储容器中添加标签信息文件和表单。 
+    稍后，你将使用以 **json** 和 **jpg** 结尾的文件，使用标签创建模型。**json** 文件是预先生成的，_包含_ 标签信息。若要使用标签训练，你需要在 blob 存储容器中添加标签信息文件和表单。 
 
 2. 返回到 Azure 门户 [https://portal.azure.com](https://portal.azure.com)。
 
@@ -82,7 +82,7 @@ az account list-locations -o table
 
 11. 在 **setup.cmd** 脚本中，查看 **rem** 命令。这些注释概括了脚本将运行的程序。程序将会执行以下操作： 
     - 在 Azure 资源组中创建存储帐户
-    - 将本地 sampleforms__ 文件夹中的文件上传到存储帐户中名为 sampleforms__ 的容器
+    - 将本地 _sampleforms_ 文件夹中的文件上传到存储帐户中名为 _sampleforms_ 的容器
     - 打印共享访问签名 URI
 
 12. 使用你部署表单识别器资源时使用的订阅、资源组和位置名称对应的值，修改 **subscription_id**、**resource_group** 和 **location** 变量声明。 
@@ -211,7 +211,7 @@ python test-model.py
 
 7. 查看输出，并注意预测置信度分数。注意输出提供 field-1、field-2 等字段名称。 
 
-## 使用客户端库，使用标签训练模型**
+## 使用客户端库，使用标签训练模型
 
 假设你使用发票表单训练模型后，想要了解使用带标签的数据训练的模型的性能。不使用标签训练模型时，你只使用了来自 **Azure blob** 容器的 **jpg** 表单。现在，你将使用 **jpg** 和 **json** 文件训练模型。
 
@@ -279,7 +279,7 @@ dotnet run
 python test-model.py
 ```
     
-3. 查看输出，并观察这一现象：使用标签训练的模型的输出提供**“CompanyPhoneNumber”** 和 **“DatedAs”** 等字段名称，与不使用标签训练的模型的输出不同（它生成了 field-1、field-2 等输出）。
+3. 查看输出，并观察这一现象：使用标签训练的模型的输出提供 **“CompanyPhoneNumber”** 和 **“DatedAs”** 等字段名称，与不使用标签训练的模型的输出不同（它生成了 field-1、field-2 等输出）。
 
 虽然使用标签训练模型的代码和不使用标签训练模型的代码差异可能不大，但从二者中选择其一可能对项目时间线产生重大影响。例如，如果使用带标签的表单，则需要为文档添加标签（本练习中未介绍这一部分，但你可以[使用示例标签工具浏览此页面](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool?tabs=v2-0)）。根据模型返回的字段和返回结果的置信度，模型的选择还会影响下游过程。  
 

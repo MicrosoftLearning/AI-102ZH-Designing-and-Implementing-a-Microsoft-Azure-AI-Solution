@@ -137,7 +137,7 @@ List<VisualFeatureTypes?> features = new List<VisualFeatureTypes?>()
 features = [VisualFeatureTypes.faces]
 ```
     
-4. 在 **AnalyzeFaces** 函数的注释 **“获取图像分析”**下，添加以下代码：
+4. 在 **AnalyzeFaces** 函数的注释 **“获取图像分析”** 下，添加以下代码：
 
 **C#**
 

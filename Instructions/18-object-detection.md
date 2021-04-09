@@ -165,8 +165,8 @@ python train-detector.py
 
 现在，你已经发布了图像分类模型，接下来，可在客户端应用程序中使用。同样，可以选择使用 **C#** 或 **Python**。
 
-1. 在 Visual Studio Code 中，导航到 **18-object-detection** 文件夹，然后在首选语言（**C-Sharp** 或 **Python**）的文件夹中，展开 test-detector 文件夹****。
-2. 右键单击 test-detector 文件夹，并打开集成终端****。然后，输入以下 SDK 特定的命令，安装自定义视觉预测包：
+1. 在 Visual Studio Code 中，导航到 **18-object-detection** 文件夹，然后在首选语言（**C-Sharp** 或 **Python**）的文件夹中，展开 **test-detector** 文件夹。
+2. 右键单击 **test-detector** 文件夹，并打开集成终端。然后，输入以下 SDK 特定的命令，安装自定义视觉预测包：
 
 **C#**
 

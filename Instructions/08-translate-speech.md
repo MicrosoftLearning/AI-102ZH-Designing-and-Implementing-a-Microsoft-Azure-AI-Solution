@@ -19,14 +19,14 @@ lab:
 3. 克隆存储库后，在 Visual Studio Code 中打开文件夹。
 4. 等待其他文件安装完毕，以支持存储库中的 C# 代码项目。
 
-    > **备注**： 如果系统提示你添加生成和调试所需的资产，请选择**“以后再说”**。
+    > **备注**： 如果系统提示你添加生成和调试所需的资产，请选择 **“以后再说”**。
 
 ## 预配认知服务资源
 
 如果你的订阅中还没有**认知服务**资源，则需要预配一个该资源。
 
 1. 打开 Azure 门户 (`https://portal.azure.com`)，使用与你的 Azure 订阅关联的 Microsoft 帐户登录。
-2. 选择 **“&#65291;创建资源”** 按钮，搜索*“认知服务”*，并使用以下设置创建一个**认知服务** 资源：
+2. 选择 **“&#65291;创建资源”** 按钮，搜索 *“认知服务”*，并使用以下设置创建一个**认知服务** 资源：
     - **订阅**： *你的 Azure 订阅*
     - **资源组**：*选择或创建一个资源组（如果你使用的是受限订阅，则可能无权创建新资源组，在此情况下，可使用一个已提供的资源组）*
     - **区域**： *选择任何可用区域*
@@ -92,7 +92,7 @@ lab:
     ```C#
     // 配置翻译
     translationConfig = SpeechTranslationConfig.FromSubscription(cogSvcKey, cogSvcRegion);
-    translationConfig.SpeechRecognitionLanguage = "en-US";
+    translationConfig.SpeechRecognitionLanguage = "zh-cn";
     translationConfig.AddTargetLanguage("fr");
     translationConfig.AddTargetLanguage("es");
     translationConfig.AddTargetLanguage("hi");
@@ -104,7 +104,7 @@ lab:
     ```Python
     # 配置翻译
     translation_config = speech_sdk.translation.SpeechTranslationConfig(cog_key, cog_region)
-    translation_config.speech_recognition_language = 'en-US'
+    translation_config.speech_recognition_language = 'zh-cn'
     translation_config.add_target_language('fr')
     translation_config.add_target_language('es')
     translation_config.add_target_language('hi')
@@ -141,7 +141,7 @@ lab:
     python translator.py
     ```
 
-8. 如果你使用 C#，则可以忽略关于在异步方法中使用 **await** 运算符的任何警告 - 我们之后将修复此问题。代码应显示一条消息，指示已准备好从 en-US 进行翻译。按 Enter 结束程序。
+8. 如果你使用 C#，则可以忽略关于在异步方法中使用 **await** 运算符的任何警告 - 我们之后将修复此问题。代码应显示一条消息，指示已准备好从 zh-cn 进行翻译。按 Enter 结束程序。
 
 ## 实现语音翻译
 
@@ -258,7 +258,7 @@ lab:
 
 3. 出现提示时，输入有效的语言代码（*fr*、*es* 或 *hi*），然后对着麦克风清晰地说出出国旅行时可能使用的惯用语。程序应转录你的语音输入并通过语音翻译作出响应。重复此过程，尝试使用应用程序支持的各种语言。完成后，按 Enter 结束程序。
 
-    > **备注**： *在此示例中，你使用 **SpeechTranslationConfig** 将语音转换为了文本，然后使用 **SpeechConfig** 将翻译合成为了语音。*事实上，你可以使用 **SpeechTranslationConfig** 直接合成翻译，但这仅适用于翻译为一种语言的情况，并且会生成通常是保存为文件而不是直接发送给扬声器的音频流。*
+    > **备注**： *在此示例中，你使用 **SpeechTranslationConfig** 将语音转换为了文本，然后使用 **SpeechConfig** 将翻译合成为了语音。事实上，你可以使用 **SpeechTranslationConfig** 直接合成翻译，但这仅适用于翻译为一种语言的情况，并且会生成通常是保存为文件而不是直接发送给扬声器的音频流。*
 
 ## 更多信息
 
