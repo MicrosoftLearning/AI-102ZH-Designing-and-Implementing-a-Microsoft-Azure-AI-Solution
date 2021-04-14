@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: '使用 Bot Framework SDK 创建机器人'
     module: '模块 7 - 对话式 AI 和 Azure 机器人服务'
@@ -91,7 +91,7 @@ dotnet run
 python app.py
 ```
     
-机器人启动时，请注意将显示正在运行该机器人的终结点。该终结点类似于 **http://localhost:3978**。
+机器人启动时，请注意将显示正在运行该机器人的终结点。该终结点类似于 **http://localhost:3978**
 
 2. 启动 Bot Framework Emulator，然后通过指定附加了 **/api/messages** 路径的终结点来打开机器人，如下所示：
 
