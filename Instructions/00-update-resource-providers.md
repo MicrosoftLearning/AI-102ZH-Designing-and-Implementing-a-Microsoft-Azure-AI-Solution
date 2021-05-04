@@ -20,6 +20,6 @@ lab:
     - Microsoft.Storage
     - Microsoft.CognitiveServices
     - Microsoft.AlertsManagement
-    - microsoft.insights
+    - Microsoft.Insights
     - Microsoft.KeyVault
     - Microsoft.ContainerInstance
