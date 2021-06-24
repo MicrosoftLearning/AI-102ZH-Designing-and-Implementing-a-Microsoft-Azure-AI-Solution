@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: '使用认知服务容器'
     module: '模块 2 - 使用认知服务开发 AI 应用'
@@ -40,7 +40,7 @@ lab:
 
 容器映像中提供了许多常用的认知服务 API。如需完整列表，请参阅[认知服务文档](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-container-support#container-availability-in-azure-cognitive-services)。在本练习中，你将使用容器映像作为文本分析*语言检测* API，但原理对于所有可用映像都是相同的。
 
-1. 在 Azure 门户的 **“主页”**上，选择 **“&#65291; 创建资源”** 按钮，搜索容器实例，然后使用以下设置创建 **“容器实例”** 资源：
+1. 在 Azure 门户的 **“主页”** 上，选择 **“&#65291; 创建资源”** 按钮，搜索容器实例，然后使用以下设置创建 **“容器实例”** 资源：
 
     - **基本**：
         - **订阅**： *你的 Azure 订阅*
