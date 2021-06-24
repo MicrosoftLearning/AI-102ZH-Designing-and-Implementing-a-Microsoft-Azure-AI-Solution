@@ -15,7 +15,7 @@ lab:
 如果已将 **AI-102-AIEngineer** 代码存储库克隆到了要完成本实验室的环境，请在 Visual Studio Code 中将其打开；否则，请按照以下步骤立即将其克隆。
 
 1. 启动 Visual Studio Code。
-2. 打开面板 (Shift+Ctrl+P) 并运行 **Git: Clone** 命令，将 `https://github.com/MicrosoftLearning/AI-102-AIEngineer` 存储库克隆到本地文件夹（具体克隆到哪个文件夹无关紧要）。
+2. 打开面板 (SHIFT+CTRL+P) 并运行 **Git: Clone** 命令，将 `https://github.com/MicrosoftLearning/AI-102ZH-Designing-and-Implementing-a-Microsoft-Azure-AI-Solution` 存储库克隆到本地文件夹（具体克隆到哪个文件夹无关紧要）。
 3. 克隆存储库后，在 Visual Studio Code 中打开文件夹。
 4. 等待其他文件安装完毕，以支持存储库中的 C# 代码项目。
 
@@ -26,9 +26,9 @@ lab:
 如果你的订阅中还没有**认知服务**资源，需要预配一个。
 
 1. 打开 Azure 门户 (`https://portal.azure.com`)，使用与你的 Azure 订阅关联的 Microsoft 帐户登录。
-2. 选择 **“&#65291;创建资源”** 按钮，搜索 *“认知服务”*，并使用以下设置创建一个**认知服务** 资源：
+2. 选择 **“&#65291;创建资源”** 按钮，搜索 *“认知服务”*，并使用以下设置创建一个**认知服务**资源：
     - **订阅**： *你的 Azure 订阅*
-    - **资源组**：*选择或创建一个资源组（如果你使用的是受限订阅，则可能无权创建新资源组，在此情况下，可使用一个已提供的资源组）*
+    - **资源组**： *选择或创建一个资源组（如果你使用的是受限订阅，则可能无权创建新资源组，在此情况下，可使用一个已提供的资源组）*
     - **区域**： *选择任何可用区域*
     - **名称**： *输入唯一名称*
     - **定价层**： 标准 S0
@@ -47,11 +47,11 @@ lab:
     - **C#**： appsettings.json
     - **Python**： .env
 
-    打开配置文件并更新其包含的配置值，以添加认知服务资源的身份验证密**钥**以及部署该资源的**位置** （不是终结点）。保存更改。
+    打开配置文件并更新其包含的配置值，以添加认知服务资源的身份验证**密钥**以及部署该资源的**位置**（<u>不是</u>终结点）- 你应从认知服务资源的 **“密钥和终结点”** 页面复制这两项。保存更改。
 3. 请注意，**text-translation** 文件夹中包含客户端应用程序的代码文件：
 
-    - **C#**：Program.cs
-    - **Python**：text-translation&period;py
+    - **C#**： Program.cs
+    - **Python**： text-translation.py
 
     打开代码文件并检查其中包含的代码。
 
@@ -76,68 +76,68 @@ lab:
 
 翻译服务可以自动检测要翻译的文本的源语言，但也支持显式检测撰写文本所用的语言。
 
-1. 在代码文件中，找到 **GetLanguage** 函数，该函数当前针对所有文本值返回“en”。
+1. 在代码文件中，找到 **GetLanguage** 函数，该函数当前针对所有文本值返回 “en”。
 2. 在 **GetLanguage** 函数的注释 **“使用 Translator detect 函数”** 下，添加以下代码以使用翻译的 REST API 来检测指定文本的语言，注意不要替换返回语言的函数末尾的代码：
 
-    **C#**
-    
-    ```C
-    // 使用 Translator detect 函数
-    object[] body = new object[] { new { Text = text } };
-    var requestBody = JsonConvert.SerializeObject(body);
-    using (var client = new HttpClient())
-    {
-        using (var request = new HttpRequestMessage())
-        {
-            // 生成请求
-            string path = "/detect?api-version=3.0";
-            request.Method = HttpMethod.Post;
-            request.RequestUri = new Uri(translatorEndpoint + path);
-            request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
-            request.Headers.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
-            request.Headers.Add("Ocp-Apim-Subscription-Region", cogSvcRegion);
-    
-            // 发送请求并获取响应
-            HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
-            // 以字符串形式读取响应
-            string responseContent = await response.Content.ReadAsStringAsync();
-    
-            // 分析 JSON 数组并获取语言
-            JArray jsonResponse = JArray.Parse(responseContent);
-            language = (string)jsonResponse[0]["language"]; 
-        }
-    }
-    ```
-    
-    **Python**
+**C#**
 
-    ```Python
-    # 使用 Translator detect 函数
-    path = '/detect'
-    url = translator_endpoint + path
-    
-    # 生成请求
-    params = {
-        'api-version': '3.0'
+```C#
+// 使用 Translator detect 函数
+object[] body = new object[] { new { Text = text } };
+var requestBody = JsonConvert.SerializeObject(body);
+using (var client = new HttpClient())
+{
+    using (var request = new HttpRequestMessage())
+    {
+        // 生成请求
+        string path = "/detect?api-version=3.0";
+        request.Method = HttpMethod.Post;
+        request.RequestUri = new Uri(translatorEndpoint + path);
+        request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
+        request.Headers.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
+        request.Headers.Add("Ocp-Apim-Subscription-Region", cogSvcRegion);
+
+        // 发送请求并获取响应
+        HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
+        // 以字符串形式读取响应
+        string responseContent = await response.Content.ReadAsStringAsync();
+
+        // 分析 JSON 数组并获取语言
+        JArray jsonResponse = JArray.Parse(responseContent);
+        language = (string)jsonResponse[0]["language"]; 
     }
-    
-    headers = {
-    'Ocp-Apim-Subscription-Key': cog_key,
-    'Ocp-Apim-Subscription-Region': cog_region,
-    'Content-type': 'application/json'
-    }
-    
-    body = [{
-        'text': text
-    }]
-    
-    # 发送请求并获取响应
-    request = requests.post(url, params=params, headers=headers, json=body)
-    response = request.json()
-    
-    # 分析 JSON 数组并获取语言
-    language = response[0]["language"]
-    ```
+}
+```
+
+**Python**
+
+```Python
+# 使用 Translator detect 函数
+path = '/detect'
+url = translator_endpoint + path
+
+# 生成请求
+params = {
+    'api-version': '3.0'
+}
+
+headers = {
+'Ocp-Apim-Subscription-Key': cog_key,
+'Ocp-Apim-Subscription-Region': cog_region,
+'Content-type': 'application/json'
+}
+
+body = [{
+    'text': text
+}]
+
+# 发送请求并获取响应
+request = requests.post(url, params=params, headers=headers, json=body)
+response = request.json()
+
+# 分析 JSON 数组并获取语言
+language = response[0]["language"]
+```
 
 3. 保存你的更改并返回到 **text-translation** 文件夹的集成终端，然后输入以下命令以运行程序：
 
@@ -160,71 +160,71 @@ lab:
 在应用程序可以确定评论所采用的语言之后，现在，你可以使用翻译服务将任何非英语评论翻译为英语。
 
 1. 在代码文件中，找到 **Translate** 函数，该函数当前针对所有文本值返回空字符串。
-2. 在 **Translate** 函数的注释 **“使用 Translator translate 函数” 下，添加以下代码以使用翻译的 REST API 将指定文本从其源语言翻译为英语，注意不要替换返回译文的函数末尾的代码：
+2. 在 **Translate** 函数的注释 **“使用 Translator translate 函数”** 下，添加以下代码以使用翻译的 REST API 将指定文本从其源语言翻译为英语，注意不要替换返回译文的函数末尾的代码：
 
-    **C#**
+**C#**
 
-    ```C
-    // 使用 Translator translate 函数
-    object[] body = new object[] { new { Text = text } };
-    var requestBody = JsonConvert.SerializeObject(body);
-    using (var client = new HttpClient())
+```C#
+// 使用 Translator translate 函数
+object[] body = new object[] { new { Text = text } };
+var requestBody = JsonConvert.SerializeObject(body);
+using (var client = new HttpClient())
+{
+    using (var request = new HttpRequestMessage())
     {
-        using (var request = new HttpRequestMessage())
-        {
-            // 生成请求
-            string path = "/translate?api-version=3.0&from=" + sourceLanguage + "&to=en" ;
-            request.Method = HttpMethod.Post;
-            request.RequestUri = new Uri(translatorEndpoint + path);
-            request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
-            request.Headers.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
-            request.Headers.Add("Ocp-Apim-Subscription-Region", cogSvcRegion);
-    
-            // 发送请求并获取响应
-            HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
-            // 以字符串形式读取响应
-            string responseContent = await response.Content.ReadAsStringAsync();
-    
-            // 分析 JSON 数组并获取翻译
-            JArray jsonResponse = JArray.Parse(responseContent);
-            translation = (string)jsonResponse[0]["translations"][0]["text"];  
-        }
-    }
-    ```
+        // 生成请求
+        string path = "/translate?api-version=3.0&from=" + sourceLanguage + "&to=en" ;
+        request.Method = HttpMethod.Post;
+        request.RequestUri = new Uri(translatorEndpoint + path);
+        request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
+        request.Headers.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
+        request.Headers.Add("Ocp-Apim-Subscription-Region", cogSvcRegion);
 
-    **Python**
-    
-    ```Python
-    # 使用 Translator translate 函数
-    path = '/translate'
-    url = translator_endpoint + path
-    
-    # 生成请求
-    params = {
-        'api-version': '3.0',
-        'from': source_language,
-        'to': ['en']
-    }
-    
-    headers = {
-        'Ocp-Apim-Subscription-Key': cog_key,
-        'Ocp-Apim-Subscription-Region': cog_region,
-        'Content-type': 'application/json'
-    }
-    
-    body = [{
-        'text': text
-    }]
-    
-    # 发送请求并获取响应
-    request = requests.post(url, params=params, headers=headers, json=body)
-    response = request.json()
-    
-    # 分析 JSON 数组并获取翻译
-    translation = response[0]["translations"][0]["text"]
-    ```
+        // 发送请求并获取响应
+        HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
+        // 以字符串形式读取响应
+        string responseContent = await response.Content.ReadAsStringAsync();
 
-3. 保存你的更改并返回到 **text-translation**  文件夹的集成终端，然后输入以下命令以运行程序：
+        // 分析 JSON 数组并获取翻译
+        JArray jsonResponse = JArray.Parse(responseContent);
+        translation = (string)jsonResponse[0]["translations"][0]["text"];  
+    }
+}
+```
+
+**Python**
+
+```Python
+# 使用 Translator translate 函数
+path = '/translate'
+url = translator_endpoint + path
+
+# 生成请求
+params = {
+    'api-version': '3.0',
+    'from': source_language,
+    'to': ['en']
+}
+
+headers = {
+    'Ocp-Apim-Subscription-Key': cog_key,
+    'Ocp-Apim-Subscription-Region': cog_region,
+    'Content-type': 'application/json'
+}
+
+body = [{
+    'text': text
+}]
+
+# 发送请求并获取响应
+request = requests.post(url, params=params, headers=headers, json=body)
+response = request.json()
+
+# 分析 JSON 数组并获取翻译
+translation = response[0]["translations"][0]["text"]
+```
+
+3. 保存你的更改并返回到 **text-translation** 文件夹的集成终端，然后输入以下命令以运行程序：
 
     **C#**
     
@@ -242,4 +242,4 @@ lab:
 
 ## 更多信息
 
-如需详细了解如何使用**翻译** 服务，请参阅[翻译文档](https://docs.microsoft.com/azure/cognitive-services/translator/)。
+如需详细了解如何使用**翻译**服务，请参阅[翻译文档](https://docs.microsoft.com/azure/cognitive-services/translator/)。

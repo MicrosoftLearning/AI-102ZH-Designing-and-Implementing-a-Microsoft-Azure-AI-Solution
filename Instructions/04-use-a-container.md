@@ -8,14 +8,14 @@ lab:
 
 通过使用 Azure 中托管的认知服务，应用程序开发人员可以专注于自己代码的基础结构，同时享受 Microsoft 管理的可缩放服务的好处。但是，在许多情况下，组织需要对其服务基础结构以及服务之间传递的数据进行更多的控制。
 
-许多认知服务 API 可以打包并部署在*容器*中，从而使组织可以在自己的基础结构（例如，在本地 Docker 服务器、Azure 容器实例或 Azure Kubernetes 服务群集中）中托管认知服务。容器化认知服务需要与基于 Azure 的认知服务帐户进行通信以支持计费；但是应用程序数据不会传递到后端服务，组织可以更好地控制其容器的部署配置，从而启用用于身份验证、可伸缩性和其他考虑因素的自定义解决方案。
+许多认知服务 API 可以打包并部署在容器中，从而使组织可以在自己的基础结构（例如，在本地 Docker 服务器、Azure *容器*实例或 Azure Kubernetes 服务群集中）中托管认知服务。容器化认知服务需要与基于 Azure 的认知服务帐户进行通信以支持计费；但是应用程序数据不会传递到后端服务，组织可以更好地控制其容器的部署配置，从而启用用于身份验证、可伸缩性和其他考虑因素的自定义解决方案。
 
 ## 克隆本课程的存储库
 
 如果已将 **AI-102-AIEngineer** 代码存储库克隆到了要完成本实验室的环境，请在 Visual Studio Code 中将其打开；否则，请按照以下步骤立即将其克隆。
 
 1. 启动 Visual Studio Code。
-2. 打开面板 (Shift+Ctrl+P) 并运行 **Git: Clone** 命令，将 `https://github.com/MicrosoftLearning/AI-102-AIEngineer` 存储库克隆到本地文件夹（具体克隆到哪个文件夹无关紧要）。
+2. 打开面板 (SHIFT+CTRL+P) 并运行 **Git: Clone** 命令，将 `https://github.com/MicrosoftLearning/AI-102ZH-Designing-and-Implementing-a-Microsoft-Azure-AI-Solution` 存储库克隆到本地文件夹（具体克隆到哪个文件夹无关紧要）。
 3. 克隆存储库后，在 Visual Studio Code 中打开文件夹。
 4. 等待其他文件安装完毕，以支持存储库中的 C# 代码项目。
 
@@ -38,9 +38,9 @@ lab:
 
 ## 安装和运行文本分析容器
 
-容器映像中提供了许多常用的认知服务 API。如需完整列表，请参阅[认知服务文档](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-container-support#container-availability-in-azure-cognitive-services)。在本练习中，你将使用容器映像作为文本分析语*言检测* API，但原理对于所有可用映像都是相同的。
+容器映像中提供了许多常用的认知服务 API。如需完整列表，请参阅[认知服务文档](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-container-support#container-availability-in-azure-cognitive-services)。在本练习中，你将使用容器映像作为文本分析*语言检测* API，但原理对于所有可用映像都是相同的。
 
-1. 在 Azure 门户的 **“主页”** 上，选择 **“&#65291; 创建资源”** 按钮，搜索*容器实例*，然后使用以下设置创建 **“容器实例”** 资源：
+1. 在 Azure 门户的 **“主页”** 上，选择 **“&#65291; 创建资源”** 按钮，搜索容器实例，然后使用以下设置创建 **“容器实例”** 资源：
 
     - **基本**：
         - **订阅**： *你的 Azure 订阅*
@@ -56,7 +56,7 @@ lab:
         - **网络类型**： 公共
         - **DNS 名称标签**： *输入容器终结点的唯一名称*
         - **端口**： *将 TCP 端口从 80 更改为 **5000***
-    - **高级**：
+    - ：**高级**：
         - **重启策略**： 失败时
         - **环境变量**：
 
@@ -66,7 +66,7 @@ lab:
             | 是 | 计费 | *认知服务资源的终结点 URI* |
             | 否 | Eula | 接受 |
 
-        - **命令替代**：[ ]
+        - **命令替代**： [ ]
     - **标记**：
         - *请勿添加任何标记*
 
@@ -74,7 +74,7 @@ lab:
 3. 在 **“概述”** 页面上观察容器实例资源的以下属性：
     - **状态**： 状态应为 *“正在运行”*。
     - **IP 地址**： 该地址是可用于访问容器实例的公共 IP 地址。
-    - **FQDN**： 这是容器实例资源*的完全限定的域名*，你可以使用它来访问容器实例而不是 IP 地址。
+    - **FQDN**： 这是容器实例资源的*完全限定的域名*，你可以使用它来访问容器实例而不是 IP 地址。
 
     > **备注**： 在本练习中，你已将用于文本翻译的认知服务容器映像部署到了 Azure 容器实例 (ACI) 资源。可以使用类似的方法将其部署到你自己的计算机或网络上的 *[Docker](https://www.docker.com/products/docker-desktop)* 主机上，方法是运行以下命令（在一行上），以将语言检测容器部署到本地 Docker 实例，并将 *&lt;yourEndpoint&gt;* 和 *&lt;yourKey&gt;* 分别替换为终结点 URI 和认知服务资源的任一密钥。
     >
@@ -82,7 +82,7 @@ lab:
     > docker run --rm -it -p 5000:5000 --memory 4g --cpus 1 mcr.microsoft.com/azure-cognitive-services/textanalytics/language Eula=accept Billing=<yourEndpoint> ApiKey=<yourKey>
     > ```
     >
-    > 该命令将在本地计算机上查找映像，如果找不到映像，它将从 *mcr&period;microsoft&period;com* 映像注册表中拉取映像，并将其部署到 Docker 实例。部署完成后，容器将启动并侦听端口 5000 上的传入请求。
+    > 该命令将在本地计算机上查找映像，如果找不到映像，它将从 *mcr.microsoft.com* 映像注册表中拉取映像，并将其部署到 Docker 实例。部署完成后，容器将启动并侦听端口 5000 上的传入请求。
 
 ## 使用容器
 

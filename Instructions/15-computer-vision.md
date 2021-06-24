@@ -13,34 +13,34 @@ lab:
 如果尚未将 **AI-102-AIEngineer** 代码存储库克隆到你要在此实验室中使用的环境，请按照以下步骤克隆它。否则，请在 Visual Studio Code 中打开克隆的文件夹。
 
 1. 启动 Visual Studio Code。
-2. 打开面板 (Shift+Ctrl+P) 并运行 **Git:Clone** 命令，将 `https://github.com/MicrosoftLearning/AI-102-AIEngineer` 存储库克隆到本地文件夹（具体克隆到哪个文件夹无关紧要）。
+2. 打开面板 (SHIFT+CTRL+P) 并运行 **Git: Clone** 命令，将 `https://github.com/MicrosoftLearning/AI-102ZH-Designing-and-Implementing-a-Microsoft-Azure-AI-Solution` 存储库克隆到本地文件夹（具体克隆到哪个文件夹无关紧要）。
 3. 克隆存储库后，在 Visual Studio Code 中打开文件夹。
 4. 等待其他文件安装完毕，以支持存储库中的 C# 代码项目。
 
-    > **备注**：如果系统提示你添加生成和调试所需的资产，请选择“**以后再说**”。
+    > **备注**： 如果系统提示你添加生成和调试所需的资产，请选择 **“以后再说”**。
 
 ## 预配认知服务资源
 
-如果你的订阅中还没有认知服务资源，需要预配一个。
+如果你的订阅中还没有**认知服务**资源，需要预配一个。
 
-1. 打开 Azure 门户 (`https://portal.azure.com`)，使用与你的 Azure 订阅关联的 Microsoft 帐户登录。
-2. 选择“**&#65291;创建资源**”按钮，搜索“*认知服务*”，并使用以下设置创建一个**认知服务**资源：
-    - **订阅**：*你的 Azure 订阅*
-    - **资源组**：*选择或创建一个资源组（如果你使用的是受限订阅，则可能无权创建新资源组，在此情况下，可使用一个已提供的资源组）*
-    - **区域**：*选择任何可用区域*
-    - **名称**：*输入唯一名称*
+1. 打开 Azure 门户 `https://portal.azure.com`，使用与你的 Azure 订阅关联的 Microsoft 帐户登录。
+2. 选择 **“&#65291;创建资源”** 按钮，搜索 *“认知服务”*，并使用以下设置创建一个**认知服务** 资源：
+    - **订阅**： *你的 Azure 订阅*
+    - **资源组**： *选择或创建一个资源组（如果你使用的是受限订阅，则可能无权创建新资源组，在此情况下，可使用一个已提供的资源组）*
+    - **区域**： *选择任何可用区域*
+    - **名称**： *输入唯一名称*
     - **定价层**：标准 S0
 3. 选中所需复选框并创建资源。
 4. 等待部署完成，然后查看部署详细信息。
-5. 部署资源后，转到该资源并查看其“**密钥和终结点**”页面。你将在下一个过程中用到此页面中的终结点和其中一个密钥。
+5. 部署资源后，转到该资源并查看其 **“密钥和终结点”** 页面。你将在下一个过程中用到此页面中的终结点和其中一个密钥。
 
 ## 准备使用计算机视觉 SDK
 
 在此练习中，你将完成一个已部分实现的客户端应用程序，该应用程序使用计算机视觉 SDK 来分析图像。
 
-> **备注**：可选择将该 SDK 用于 **C#** 或 **Python**。在下面的步骤中，请执行适用于你的语言首选项的操作。
+> **备注**： 可选择将该 SDK 用于 **C#** 或 **Python**。在下面的步骤中，请执行适用于你的语言首选项的操作。
 
-1. 在 Visual Studio Code 的“**资源管理器**”窗格中，浏览到 **15-computer-vision** 文件夹，并根据你的语言首选项展开 **C-Sharp** 文件夹或 **Python** 文件夹。
+1. 在 Visual Studio Code 的 **“资源管理器”** 窗格中，浏览到 **15-computer-vision** 文件夹，并根据你的语言首选项展开 **C-Sharp** 文件夹或 **Python** 文件夹。
 2. 右键单击 **image-analysis** 文件夹，并打开集成终端。然后通过运行适用于你的语言首选项的命令，安装计算机视觉 SDK 包：
 
 **C#**
@@ -55,17 +55,17 @@ dotnet add package Microsoft.Azure.CognitiveServices.Vision.ComputerVision --ver
 pip install azure-cognitiveservices-vision-computervision==0.7.0
 ```
     
-3. 查看 **text-analysis** 文件夹的内容，并注意其中包含一个配置设置文件：
-    - **C#**：appsettings.json
-    - **Python**：.env
+3. 查看 **image-analysis** 文件夹的内容，并注意其中包含一个配置设置文件：
+    - **C#**： appsettings.json
+    - **Python**： .env
 
-    打开配置文件，然后更新其中包含的配置值，以反映认知服务资源的**终结点**和身份验证密**钥**。保存更改。
+    打开配置文件，然后更新其中包含的配置值，以反映认知服务资源的终**结点**和身份验证**密钥**。保存更改。
 4. 请注意，**image-analysis** 文件夹中包含客户端应用程序的代码文件：
 
-    - **C#**：Program.cs
-    - **Python**：image-analysis&period;py
+    - **C#**： Program.cs
+    - **Python**： image-analysis.py
 
-    打开代码文件，并在顶部的现有命名空间引用下找到注释“**导入命名空间**”。然后在此注释下添加以下特定于语言的代码，以导入使用计算机视觉 SDK 所需的命名空间：
+    打开代码文件，并在顶部的现有命名空间引用下找到注释 **“导入命名空间”**。然后在此注释下添加以下特定于语言的代码，以导入使用计算机视觉 SDK 所需的命名空间：
 
 **C#**
 
@@ -95,7 +95,7 @@ from msrest.authentication import CognitiveServicesCredentials
 
 现在，你已准备好使用 SDK 来调用计算机视觉服务并分析图像。
 
-1. 在客户端应用程序的代码文件（**Program.cs** 或 **image-analysis&period;py**）中，可在 **Main** 函数中看到已提供用于加载配置设置的代码。然后查找注释“**对计算机视觉对象客户端进行身份验证**”。然后在此注释下添加以下特定于语言的代码，以创建计算机视觉对象客户端对象并对其进行身份验证：
+1. 在客户端应用程序的代码文件（**Program.cs** 或 **image-analysis.py**）中，可在 **Main** 函数中看到已提供用于加载配置设置的代码。然后查找注释 **“对计算机视觉对象客户端进行身份验证”**。然后在此注释下添加以下特定于语言的代码，以创建计算机视觉对象客户端对象并对其进行身份验证：
 
 **C#**
 
@@ -118,7 +118,7 @@ cv_client = ComputerVisionClient(cog_endpoint, credential)
 
 2. 在 **Main** 函数中，可在你刚刚添加的代码下看到，代码指定了图像文件的路径，然后将图像路径传递给另外两个函数（**AnalyzeImage** 和 **GetThumbnail**）。这两个函数尚未完全实现。
 
-3. 在 **AnalyzeImage** 函数的注释“**指定要检索的特征**”下，添加以下代码：
+3. 在 **AnalyzeImage** 函数的注释 **“指定要检索的特征”** 下，添加以下代码：
 
 **C#**
 
@@ -147,7 +147,7 @@ features = [VisualFeatureTypes.description,
             VisualFeatureTypes.adult]
 ```
     
-4. 在 **AnalyzeImage** 函数的注释“**获取图像分析**”下，添加以下代码（包括指示你稍后将在何处添加更多代码的注释。）：
+4. 在 **AnalyzeImage** 函数的注释 **“获取图像分析”** 下，添加以下代码（包括指示你稍后将在何处添加更多代码的注释。）：
 
 **C#**
 
@@ -228,9 +228,9 @@ python image-analysis.py images/street.jpg
 
 ## 获取图像的建议标记
 
-这有时可用于标识相关*标记*，这些标记提供了与图像内容有关的线索。
+这有时可用于标识相关标记，这*些标*记提供了与图像内容有关的线索。
 
-1. 在 **AnalyzeImage** 函数的注释“**获取图像标记**”下，添加以下代码：
+1. 在 **AnalyzeImage** 函数的注释 **“获取图像标记”** 下，添加以下代码：
 
 **C#**
 
@@ -262,7 +262,7 @@ if (len(analysis.tags) > 0):
 
 计算机视觉服务可建议图像的*类别*，并且可标识每个类别中的知名地标或名人。
 
-1. 在 **AnalyzeImage** 函数的注释“**获取图像类别（包括名人和地标）**”下，添加以下代码：
+1. 在 **AnalyzeImage** 函数的注释 **“获取图像类别（包括名人和地标）”** 下，添加以下代码：
 
 **C#**
 
@@ -366,7 +366,7 @@ if (len(analysis.categories) > 0):
 
 可通过可视方式从徽标中识别某些品牌，即使徽标中未显示品牌名称也是如此。计算机视觉服务经过训练，可识别数千个知名品牌。
 
-1. 在 **AnalyzeImage** 函数的注释 “**获取图像中的品牌**” 下，添加以下代码：
+1. 在 **AnalyzeImage** 函数的注释 **“获取图像中的品牌”** 下，添加以下代码：
 
 **C#**
 
@@ -398,7 +398,7 @@ if (len(analysis.brands) > 0):
 
 *物体检测*是计算机视觉服务的一种特定形式，可识别图像中的各个物体，并使用边界框指示其位置。
 
-1. 在 **AnalyzeImage** 函数的注释 “**获取图像中的物体**” 下，添加以下代码：
+1. 在 **AnalyzeImage** 函数的注释 **“获取图像中的物体”** 下，添加以下代码：
 
 **C#**
 
@@ -469,7 +469,7 @@ if len(analysis.objects) > 0:
 
 一些图像可能并非适合所有受众，你可能需要进行一些审核，以识别成人或暴力性质的图像。
 
-1. 在 **AnalyzeImage** 函数的注释 “**获取审核评级**” 下，添加以下代码：
+1. 在 **AnalyzeImage** 函数的注释 **“获取审核评级”** 下，添加以下代码：
 
 **C#**
 
@@ -491,13 +491,13 @@ print(ratings)
     
 2. 保存更改，并针对 **images** 文件夹中的每个图像文件运行一次程序，更改 **Main** 函数中的文件名，并注意每张图像的评级。
 
-> **备注**：在前面的任务中，你使用了单种方法来分析图像，然后逐步添加代码来分析和显示结果。SDK 还提供了用于建议描述文字、识别标记和检测物体等的单独方法，这意味着你可使用最适合的方法来仅返回所需信息，减少需要返回的数据有效负载的大小。有关更多详细信息，请参阅 [.NET SDK 文档](https://docs.microsoft.com/dotnet/api/overview/azure/cognitiveservices/client/computervision?view=azure-dotnet) 或 [Python SDK 文档](https://docs.microsoft.com/python/api/overview/azure/cognitiveservices/computervision?view=azure-python)。
+> **备注**： 在前面的任务中，你使用了单种方法来分析图像，然后逐步添加代码来分析和显示结果。SDK 还提供了用于建议描述文字、识别标记和检测物体等的单独方法，这意味着你可使用最适合的方法来仅返回所需信息，减少需要返回的数据有效负载的大小。有关更多详细信息，请参阅 [.NET SDK 文档](https://docs.microsoft.com/dotnet/api/overview/azure/cognitiveservices/client/computervision?view=azure-dotnet) 或 [Python SDK 文档](https://docs.microsoft.com/python/api/overview/azure/cognitiveservices/computervision?view=azure-python)。
 
 ## 生成缩略图图像
 
 在某些情况下，你可能需要创建较小的图像（即*缩略图*），将其裁剪为在新的图像尺寸中包含主要视觉主体。
 
-1. 在代码文件中查找 **GetThumbnail** 函数，在注释 “**生成缩略图**” 下添加以下代码：
+1. 在代码文件中查找 **GetThumbnail** 函数，在注释 **“生成缩略图”** 下添加以下代码：
 
 **C#**
 
