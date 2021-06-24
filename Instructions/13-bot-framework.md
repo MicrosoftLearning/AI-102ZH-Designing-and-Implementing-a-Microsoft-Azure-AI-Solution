@@ -104,7 +104,7 @@ dotnet run
 python app.py
 ```
     
-机器人启动时，请注意将显示正在运行该机器人的终结点。该终结点类似于 **http://localhost:3978**。
+机器人启动时，请注意将显示正在运行该机器人的终结点。该终结点类似于 **http://localhost:3978**
 
 2. 启动 Bot Framework Emulator，然后通过指定附加了 **/api/messages** 路径的终结点来打开机器人，如下所示：
 
@@ -138,7 +138,7 @@ using System;
 from datetime import datetime
 ```
 
-3. 修改消息活动的活动处理程序函数以匹配以下代码**：
+3. 修改消息活动的活动处理程序函数以匹配以下代码：
 
 **C#**
 
@@ -168,7 +168,7 @@ async def on_message_activity(self, turn_context: TurnContext):
     await turn_context.send_activity(response_message)
 ```
     
-4. 保存所做的更改，然后在终端窗格中，确保当前目录是包含机器人代码文件的 **TimeBot** 文件夹，然后输入以下命令以启动在本地运行的机器人****。
+4. 保存所做的更改，然后在终端窗格中，确保当前目录是包含机器人代码文件的 **TimeBot** 文件夹，然后输入以下命令以启动在本地运行的机器人。
 
 **C#**
 
@@ -184,7 +184,7 @@ python app.py
 
 同样，当机器人启动时，请注意将显示正在运行该机器人的终结点。
 
-5. 启动 Bot Framework Emulator，然后通过指定附加了 /api/messages 路径的终结点来打开机器人，如下所示****：
+5. 启动 Bot Framework Emulator，然后通过指定附加了 **/api/messages** 路径的终结点来打开机器人，如下所示：
 
     `http://localhost:3978/api/messages`
 

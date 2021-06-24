@@ -129,7 +129,7 @@ Bot Framework Composer 是一种图像设计器，可用于快速轻松地构建
     The weather in ${dialog.city} is ${dialog.weather} and the temperature is ${dialog.temp}&deg;.
     ```
 
-    **备注**：该消息使用你在先前操作中设置的 **dialog.city**、**dialog.weather** 和 **dialog.temp** 属性。后续你还将使用 **dialog.icon** 属性。*
+    ***备注**：该消息使用你在先前操作中设置的 **dialog.city**、**dialog.weather** 和 **dialog.temp** 属性。后续你还将使用 **dialog.icon** 属性。*
 
 13. 你还需考虑天气服务的响应并非 200 的情况，因此，在“**False**”分支中添加“**发送响应**”操作，并将其文本设置为“`I got an error: ${dialog.api_response.content.message}.`”
 

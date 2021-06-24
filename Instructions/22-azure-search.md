@@ -198,7 +198,7 @@ Web 浏览器标签页随即打开，并提示你登录到 Azure。按照提示�
 
 ### 获取 Azure 认知搜索资源的终结点和密钥
 
-1. 在 Azure 门户中，返回到 Azure 认知搜索资源的 **“概述”** 页；在页面顶部找到资源的 Url（类似 **https://resource_name.search.windows.net**） 并将其复制到剪贴板。
+1. 在 Azure 门户中，返回到 Azure 认知搜索资源的 **“概述”** 页；在页面顶部找到资源的 Url 类似 **https://resource_name.search.windows.net** 并将其复制到剪贴板。
 2. 在 Visual Studio Code 中的 **“Explorer”** 窗格中，展开 **“22-create-a-search-solution”** 文件夹及其 **“modify-search”** 子文件夹，并选择 **“modify-search.cmd”** 来打开它。你将使用此脚本文件来运行 *cURL* 命令，将 JSON 提交给 Azure 认知服务 REST 接口。
 3. 在 **modify-search.cmd** 中，将 **YOUR_SEARCH_URL** 占位符替换为你复制到剪贴板的 URL。
 4. 在 Azure 门户中，查看你的 Azure 认知搜索资源的 **“密钥”** 页面，并将 **“主管理密钥”** 复制到剪贴板。
@@ -413,19 +413,19 @@ Web 浏览器标签页随即打开，并提示你登录到 Azure。按照提示�
     flask run
     ```
 
-2. 应用成功启动时显示的消息，后跟正在运行的 web 应用程序的链接（*http://localhost:5000/* 或 *http://127.0.0.1:5000/*），用于在 web 浏览器中打开 Margies Travel 站点。
+2. 应用成功启动时显示的消息，后跟正在运行的 web 应用程序的链接 *http://localhost:5000/* 或 *http://127.0.0.1:5000/* 用于在 web 浏览器中打开 Margies Travel 站点。
 3. 在 Margie's Travel 网站上，在搜索框中输入 **“London hotel”** 并单击 **“搜索”**。
 4. 查看搜索结果。其中包含文件名（以及指向文件 URL 的超链接）、强调了搜索词（*London* 和 *hotel*）的文件内容提取项，以及来自索引字段的其他文件属性。
 5. 观察结果页包含某些可用于精炼结果的用户界面元素。这些格式包括：
     - 基于 **metadata_author** 字段 *facet* 值的筛选器。这演示了如何使用可分片字段来返回 **facets** - 字段的列表以及可在用户界面中显示为潜在筛选器值的一组离散值。
-    - 根据特定字段和排列顺序（升序或降序）对结果进行排序的能力。**默认顺序基于相关度，基于评分配置文件计算为 **search.score()** 值，评分配置文件评估索引字段中搜索词的频率和重要性。
+    - 根据特定字段和排列顺序（升序或降序）对结果进行排序的能力。默认顺序基于相关度，基于评分配置文件计算为 **search.score()** 值，评分配置文件评估索引字段中搜索词的频率和重要性。
 6. 选择 **“Reviewer”** 筛选器和 **“正面到负面”** 排序选项，然后选择 **“精炼结果”**。
 7. 观察对结果进行了筛选，使其仅包含评论，并且按情绪积极程度降序排列。
 8. 在 **“搜索”** 框中，输入新搜索 **“quiet hotel in New York”** 并查看结果。
 9. 尝试使用以下搜索词：
-    - **Tower of London**（观察这个词在一些文档中被识别为关键短语）。**
+    - **Tower of London**（观察这个词在一些文档中被识别为关键短语）。
     - **skyscraper**（观察这个词并未出现在任何文档的实际内容中，但在由某些文档中的图像生成的图像描述和图像标签中找到）。
-    - **Mojave desert**（观察这个词在一些文档中被识别为位置）。**
+    - **Mojave desert**（观察这个词在一些文档中被识别为位置）。
 10. 关闭包含 Margie's Travel 网站的浏览器选项卡，并返回到 Visual Studio Code。然后在 **margies-travel** 文件夹中 Python 终端中（dotnet 或 flask 应用程序在其中运行），按 Ctrl+C 以停止运行应用。
 
 ## 更多信息
