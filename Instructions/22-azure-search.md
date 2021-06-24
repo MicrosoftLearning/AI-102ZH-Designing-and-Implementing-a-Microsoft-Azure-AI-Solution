@@ -36,7 +36,7 @@ lab:
 ### 创建 Azure 认知搜索资源
 
 1. 在 Web 浏览器中，打开 Azure 门户 (`https://portal.azure.com`)，并使用与你的 Azure 订阅关联的 Microsoft 帐户登录。
-2. 选择 **“&#65291;创建资源”** 按钮，搜索“搜索”，并使用以下设置创建**“Azure 认知搜索”**资源：
+2. 选择 **“&#65291;创建资源”** 按钮，搜索“搜索”，并使用以下设置创建 **“Azure 认知搜索”** 资源：
     - **订阅**：*你的 Azure 订阅*
     - **资源组**：*创建新资源组（如果使用受限制的订阅，你可能无权创建新的资源组 - 请使用提供的资源组）*
     - **服务名称**：*输入唯一名称*
@@ -54,7 +54,7 @@ lab:
     - **订阅**：*你的 Azure 订阅*
     - **资源组**：*与你的 Azure 认知搜索资源相同的资源组*
     - **区域**：*与你的 Azure 认知搜索资源相同的位置*
-    - 名称****：*输入唯一名称*
+    - **名称**：*输入唯一名称*
     - **定价层**：标准 S0
 2. 选中所需复选框并创建资源。
 3. 等待部署完成，然后查看部署详细信息。
@@ -81,7 +81,7 @@ lab:
 
 1. 在 Visual Studio Code 中，在 **Explorer** 窗格中展开 **“22-create-a-search-solution”** 文件夹，然后选择 **“UploadDocs.cmd”**。
 2. 编辑批处理文件，将 **YOUR_SUBSCRIPTION_ID**、**YOUR_AZURE_STORAGE_ACCOUNT_NAME** 和 **YOUR_AZURE_STORAGE_KEY** 占位符替换为相应的订阅 Id、你之前创建的存储帐户的 Azure 存储帐户名称和 Azure 存储帐户密钥值。
-3. 保存更改，然后右键单击“22-create-a-search-solution”文件夹并打开集成终端。****
+3. 保存更改，然后右键单击“**22-create-a-search-solution**”文件夹并打开集成终端。
 4. 使用 Azure CLI，输入以下命令以登录到你的 Azure 订阅。
 
     ```
@@ -198,11 +198,11 @@ Web 浏览器标签页随即打开，并提示你登录到 Azure。按照提示�
 
 ### 获取 Azure 认知搜索资源的终结点和密钥
 
-1. 在 Azure 门户中，返回到 Azure 认知搜索资源的 **“概述”** 页；在页面顶部找到资源的 Url（类似 **https://resource_name.search.windows.net**）并将其复制到剪贴板。
+1. 在 Azure 门户中，返回到 Azure 认知搜索资源的 **“概述”** 页；在页面顶部找到资源的 Url（类似 **https://resource_name.search.windows.net**） 并将其复制到剪贴板。
 2. 在 Visual Studio Code 中的 **“Explorer”** 窗格中，展开 **“22-create-a-search-solution”** 文件夹及其 **“modify-search”** 子文件夹，并选择 **“modify-search.cmd”** 来打开它。你将使用此脚本文件来运行 *cURL* 命令，将 JSON 提交给 Azure 认知服务 REST 接口。
 3. 在 **modify-search.cmd** 中，将 **YOUR_SEARCH_URL** 占位符替换为你复制到剪贴板的 URL。
 4. 在 Azure 门户中，查看你的 Azure 认知搜索资源的 **“密钥”** 页面，并将 **“主管理密钥”** 复制到剪贴板。
-5. 在 Visual Studio Code 中，将 YOUR_ADMIN_KEY 占位符替换为你复制到剪贴板的密钥。****
+5. 在 Visual Studio Code 中，将 **YOUR_ADMIN_KEY** 占位符替换为你复制到剪贴板的密钥。
 6. 将更高保存到 **modify-search.cmd** （但暂时不要运行它！）
 
 ### 评价和修改技能组
@@ -241,7 +241,7 @@ Web 浏览器标签页随即打开，并提示你登录到 Azure。按照提示�
 
 新技能名为 **“get-sentiment”**，对于文档中的每个**document** 级别，它将评估在被索引的文档的 **merged_content** 字段中找到的文字（包含源内容和从内容中的图像提取的任何文字）。它使用提取的文档**语言**（默认为英语），并评估内容情绪的分数。此分数随后作为名为 **sentimentScore** 的新字段输出。
 
-6. 保存对 skillset.json 的更改。****
+6. 保存对 **skillset.json** 的更改。
 
 ### 查看并修改索引
 
@@ -359,7 +359,7 @@ Web 浏览器标签页随即打开，并提示你登录到 Azure。按照提示�
 
 ### 浏览用于搜索索引的代码
 
-margies-travel 文件夹包含 web 应用程序（Microsoft C# ASP.NET Razor web 应用程序或 Python Flask 应用程序）的代码文件，该应用程序包含搜索功能********。
+**margies-travel** 文件夹包含 web 应用程序（Microsoft C# *ASP.NET Razor* web 应用程序或 Python *Flask* 应用程序）的代码文件，该应用程序包含搜索功能。
 
 1. 根据你选择的编程语言，在该 web 应用程序中打开以下代码文件：
     - **C#**：Pages/Index.cshtml.cs
@@ -424,7 +424,7 @@ margies-travel 文件夹包含 web 应用程序（Microsoft C# ASP.NET Razor web
 8. 在 **“搜索”** 框中，输入新搜索 **“quiet hotel in New York”** 并查看结果。
 9. 尝试使用以下搜索词：
     - **Tower of London**（观察这个词在一些文档中被识别为关键短语）。**
-    - **skyscraper**（观察这个词并未出现在任何文档的实际内容中，但在由某些文档中的图像生成的图像描述和图像标签中找到）。****
+    - **skyscraper**（观察这个词并未出现在任何文档的实际内容中，但在由某些文档中的图像生成的图像描述和图像标签中找到）。
     - **Mojave desert**（观察这个词在一些文档中被识别为位置）。**
 10. 关闭包含 Margie's Travel 网站的浏览器选项卡，并返回到 Visual Studio Code。然后在 **margies-travel** 文件夹中 Python 终端中（dotnet 或 flask 应用程序在其中运行），按 Ctrl+C 以停止运行应用。
 
