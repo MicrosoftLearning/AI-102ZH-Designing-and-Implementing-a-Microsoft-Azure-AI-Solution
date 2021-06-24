@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: '创建 Azure 认知搜索解决方案'
     module: '模块 12 - 创建知识挖掘解决方案'
@@ -310,34 +310,34 @@ Web 浏览器标签页随即打开，并提示你登录到 Azure。按照提示�
 
 ### 查询经修改的索引
 
-1. 在 Azure 认知搜索资源边栏选项卡的顶部，选择“搜索资源管理器”。****
-2. 在搜索资源管理器的“查询字符串”框中，输入以下查询字符串，然后选择“搜索”********。
+1. 在 Azure 认知搜索资源边栏选项卡的顶部，选择 **“搜索资源管理器”**。
+2. 在搜索资源管理器的 **“查询字符串”** 框中，输入以下查询字符串，然后选择 **“搜索”**。
 
     ```
     search=London&$select=url,sentiment,keyphrases&$filter=metadata_author eq 'Reviewer' and sentiment gt 0.5
     ```
 
-    该查询可检索评论家 (Reviewer) 撰写的所有提及伦敦 (London) 时情绪分数大于 0.5（换句话说，提及伦敦的正面评论）的文档的 url、情绪和关键词**********************
+    该查询可检索评论家 (**Reviewer**) 撰写的所有提及伦敦 (**London**) 时情绪分数大于 **0.5**（换句话说，提及伦敦的正面评论）的文档的 **url**、情绪和关键词
 
-3. 关闭“搜索资源管理器”页并返回“概述”页。********
+3. 关闭 **“搜索资源管理器”** 页并返回 **“概述”** 页。
 
 ## 创建搜索客户端应用程序
 
 现在你拥有了有用的索引，可从客户端应用程序使用它。可通过下列方式进行此操作：使用 REST 接口，通过 HTTP 以 JSON 提交请求并收取响应；使用你偏好的编程语言的软件开发工具包 (SDK)。在此练习中，我们将使用 SDK。
 
-> 备注****：可选择将该 SDK 用于 C#**** 或 Python****。在下面的步骤中，请执行适用于你的语言首选项的操作。
+> **备注**：可选择将该 SDK 用于 **C#** 或 **Python**。在下面的步骤中，请执行适用于你的语言首选项的操作。
 
 ### 获取搜索资源的终结点和密钥
 
-1. 在 Azure 门户中，在你的 Azure 认知搜索资源的“概述”页上，记下“Url”值，该值应类似 **********https://*your_resource_name*.search.windows.net**。这是你的搜索资源的终结点。
-2. 在“密钥”页面上，注意有两个管理密钥和一个查询密钥。************管理密钥用于创建和管理搜索资源；查询密钥由只需要执行搜索查询的客户端应用程序使用。****
+1. 在 Azure 门户中，在你的 Azure 认知搜索资源的 **“概述”** 页上，记下 **“Url”** 值，该值应类似 **https://*your_resource_name*.search.windows.net**。这是你的搜索资源的终结点。
+2. 在 **“密钥”** 页面上，注意有两个管理密钥和一个查询密钥。管理密钥用于创建和管理搜索资源；查询密钥由只需要执行搜索查询的客户端应用程序使用。
 
     *你需要客户端应用程序的终结点和查询密钥。*
 
 ### 准备使用 Azure 认知搜索 SDK
 
-1. 在 Visual Studio Code 中，在“Explorer”窗格中浏览到 22-create-a-search-solution 文件夹，并根据你的语言偏好展开 C-Sharp 或 Python 文件夹。****************
-2. 右键单击 margies-travel 文件夹并打开集成终端。****然后运行符合你语言偏好的适当命令，安装 Azure 认知搜索 SDK 包。
+1. 在 Visual Studio Code 中，在 **“Explorer”** 窗格中浏览到 **22-create-a-search-solution** 文件夹，并根据你的语言偏好展开 **C-Sharp** 或 **Python** 文件夹。
+2. 右键单击 **margies-travel** 文件夹并打开集成终端。然后运行符合你语言偏好的适当命令，安装 Azure 认知搜索 SDK 包。
 
     **C#**
     
@@ -351,11 +351,11 @@ Web 浏览器标签页随即打开，并提示你登录到 Azure。按照提示�
     pip install azure-search-documents==11.0.0
     ```
     
-3. 查看 margies-travel 文件夹的内容，注意它包含配置设置的文件：****
+3. 查看 **margies-travel** 文件夹的内容，注意它包含配置设置的文件：
     - **C#**：appsettings.json
     - **Python**：.env
 
-    打开配置文件并更新它包含的配置值，以反映你的 Azure 认知搜索资源的终结点和查询密钥。********保存更改。
+    打开配置文件并更新它包含的配置值，以反映你的 Azure 认知搜索资源的**终结点**和**查询密钥**。保存更改。
 
 ### 浏览用于搜索索引的代码
 
@@ -364,15 +364,15 @@ margies-travel 文件夹包含 web 应用程序（Microsoft C# ASP.NET Razor web
 1. 根据你选择的编程语言，在该 web 应用程序中打开以下代码文件：
     - **C#**：Pages/Index.cshtml.cs
     - **Python**：app.py
-2. 在代码文件顶部，找到注释“Import search namespaces”，并注意已通过 Azure 认知搜索 SDK 导入工作的命名空间：****
-3. 在 search_query 函数中，找到注释“Create a search client”，并注意使用你的 Azure 认知搜索资源的终结点和查询密钥创建 SearchClient 对象的代码：************
-4. 在 search_query 函数中，找到注释“Submit search query”，并通过以下选项评审用于提交对指定文字的搜索的代码：********
-    - 要求找到搜索文本中所有单词的搜索模式。******
+2. 在代码文件顶部，找到注释 **“Import search namespaces”**，并注意已通过 Azure 认知搜索 SDK 导入工作的命名空间：
+3. 在 **search_query** 函数中，找到注释 **“Create a search client”**，并注意使用你的 Azure 认知搜索资源的终结点和查询密钥创建 **SearchClient** 对象的代码：
+4. 在 **search_query** 函数中，找到注释 **“Submit search query”**，并通过以下选项评审用于提交对指定文字的搜索的代码：
+    - 要求找到搜索文本中*所有*单词的**搜索模式**。
     - 结果中包含搜索找到的文档总数。
     - 结果经过筛选，仅包含与提供的筛选表达式匹配的文档。
     - 结果按指定排列顺序排列。
-    - Metadata_author 字段的每个离散值都作为一个 facet 返回，facet 可用于显示要筛选的预定义的值。******
-    - 结果中包含 merged_content 和 imageCaption 字段的最多三个提取项和突出显示的搜索词。********
+    - **Metadata_author** 字段的每个离散值都作为一个 *facet* 返回，facet 可用于显示要筛选的预定义的值。
+    - 结果中包含 **merged_content** 和 **imageCaption** 字段的最多三个提取项和突出显示的搜索词。
     - 结果仅包含指定字段。
 
 ### 浏览用于呈现搜索结果的代码
@@ -383,23 +383,23 @@ margies-travel 文件夹包含 web 应用程序（Microsoft C# ASP.NET Razor web
     - **C#**：Pages/Index.cshtml
     - **Python**：templates/search.html
 2. 检查代码，它呈现了显示搜索结果的页面。观察以下情况：
-    - 页面从用户可用于提交新搜索的搜索表单开始（在 Python 版本的应用程序中，此表单在 base.html 模板中定义），页面顶部引用了该表单****。
+    - 页面从用户可用于提交新搜索的搜索表单开始（在 Python 版本的应用程序中，此表单在 **base.html** 模板中定义），页面顶部引用了该表单。
     - 然后呈现搜索表单，让用户能够精炼搜索结果。此表单的代码：
         - 检索并显示搜索结果中的文档数。
-        - 检索 metadata_author 字段的 facet 值，并将其显示为待筛选的选项列表。****
+        - 检索 **metadata_author** 字段的 facet 值，并将其显示为待筛选的选项列表。
         - 创建用于显示结果排序选项的下拉列表。
     - 代码随后将迭代搜索结果，按以下方式呈现每个结果：
-        - 将 metadata_storage_name（文件名）字段显示为指向 url 字段中地址的链接。********
-        - 突出显示在 merged_content 和 imageCaption 字段中找到的搜索词，以帮助在上下文中展现搜索词。**********
-        - 显示metadata_author、metadata_storage_size、metadata_storage_last_modified 和 language 字段。****************
-        - 使用表情指示情绪（&#128578; 表示 0.5 或更高分数，&#128577; 表示低于 0.5 的分数）。****
-        - 显示前五个 keyphrases（若有）。****
-        - 显示前五个 locations（若有）。****
-        - 显示前五个 imageTags（若有）。****
+        - 将 **metadata_storage_name** （文件名）字段显示为指向 **url** 字段中地址的链接。
+        - 突出显示在 **merged_content** 和 **imageCaption** 字段中找到的搜索词，以帮助在上下文中展现搜索词。
+        - 显示 **metadata_author**、**metadata_storage_size**、**metadata_storage_last_modified** 和 **language** 字段。
+        - 使用表情指示**情绪**（&#128578; 表示 0.5 或更高分数，&#128577; 表示低于 0.5 的分数）。
+        - 显示前五个 **keyphrases**（若有）。
+        - 显示前五个 **locations**（若有）。
+        - 显示前五个 **imageTags**（若有）。
 
 ### 运行 Web 应用
 
- 1. 返回 margies-travel 文件夹的集成终端，并输入以下命令以运行程序：****
+ 1. 返回 **margies-travel** 文件夹的集成终端，并输入以下命令以运行程序：
 
     **C#**
     
@@ -414,19 +414,19 @@ margies-travel 文件夹包含 web 应用程序（Microsoft C# ASP.NET Razor web
     ```
 
 2. 应用成功启动时显示的消息，后跟正在运行的 web 应用程序的链接（*http://localhost:5000/* 或 *http://127.0.0.1:5000/*），用于在 web 浏览器中打开 Margies Travel 站点。
-3. 在 Margie's Travel 网站上，在搜索框中输入“London hotel”并单击“搜索”。********
+3. 在 Margie's Travel 网站上，在搜索框中输入 **“London hotel”** 并单击 **“搜索”**。
 4. 查看搜索结果。其中包含文件名（以及指向文件 URL 的超链接）、强调了搜索词（*London* 和 *hotel*）的文件内容提取项，以及来自索引字段的其他文件属性。
 5. 观察结果页包含某些可用于精炼结果的用户界面元素。这些格式包括：
-    - 基于 metadata_author 字段 facet 值的筛选器。******这演示了如何使用可分片字段来返回 facets**** - 字段的列表以及可在用户界面中显示为潜在筛选器值的一组离散值。
-    - 根据特定字段和排列顺序（升序或降序）对结果进行排序的能力。**默认顺序基于相关度，基于评分配置文件计算为 search.score() 值，评分配置文件评估索引字段中搜索词的频率和重要性。********
-6. 选择“Reviewer”筛选器和“正面到负面”排序选项，然后选择“精炼结果”。************
+    - 基于 **metadata_author** 字段 *facet* 值的筛选器。这演示了如何使用可分片字段来返回 **facets** - 字段的列表以及可在用户界面中显示为潜在筛选器值的一组离散值。
+    - 根据特定字段和排列顺序（升序或降序）对结果进行排序的能力。**默认顺序基于相关度，基于评分配置文件计算为 **search.score()** 值，评分配置文件评估索引字段中搜索词的频率和重要性。
+6. 选择 **“Reviewer”** 筛选器和 **“正面到负面”** 排序选项，然后选择 **“精炼结果”**。
 7. 观察对结果进行了筛选，使其仅包含评论，并且按情绪积极程度降序排列。
-8. 在“搜索”框中，输入新搜索“quiet hotel in New York”并查看结果。********
+8. 在 **“搜索”** 框中，输入新搜索 **“quiet hotel in New York”** 并查看结果。
 9. 尝试使用以下搜索词：
     - **Tower of London**（观察这个词在一些文档中被识别为关键短语）。**
     - **skyscraper**（观察这个词并未出现在任何文档的实际内容中，但在由某些文档中的图像生成的图像描述和图像标签中找到）。****
     - **Mojave desert**（观察这个词在一些文档中被识别为位置）。**
-10. 关闭包含 Margie's Travel 网站的浏览器选项卡，并返回到 Visual Studio Code。然后在 margies-travel 文件夹中 Python 终端中（dotnet 或 flask 应用程序在其中运行），按 Ctrl+C 以停止运行应用。****
+10. 关闭包含 Margie's Travel 网站的浏览器选项卡，并返回到 Visual Studio Code。然后在 **margies-travel** 文件夹中 Python 终端中（dotnet 或 flask 应用程序在其中运行），按 Ctrl+C 以停止运行应用。
 
 ## 更多信息
 
