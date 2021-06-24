@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: '实验室环境设置'
     module: '设置'
@@ -6,9 +6,9 @@ lab:
 
 # 实验室环境设置
 
-这些练习被设计为在托管实验室环境中完成。但如果你想要在自己的计算机上完成，可以安装以下软件来实现这一目标。使用自己的环境时，可能会遇到意外的对话框和意外行为。
+这些练习被设计为在托管实验室环境中完成。如果你想要在自己的计算机上完成，可以安装以下软件来实现这一目标。使用自己的环境时，可能会遇到意外的对话框和意外行为。由于可能的本地配置的范围很广，因此课程团队可能无法解决你在自己的环境中遇到的问题。
 
-> **备注**： 以下说明适用于 Windows 10 计算机。还可以使用 Linux 或 MacOS。
+> **备注**： 以下说明适用于 Windows 10 计算机。还可以使用 Linux 或 MacOS。你可能需要根据所选的 OS 调整实验室说明。
 
 ### 基本操作系统 (Windows 10)
 
@@ -58,7 +58,7 @@ pip install --upgrade numpy
 
 1. 从 https://code.visualstudio.com/Download 下载 
 2. 使用默认选项进行安装 
-3. 安装后，启动 Visual Studio Code，然后在 **“扩展”** 选项卡 (Ctrl+Shift+X) 上，搜索并安装以下 Microsoft 扩展：
+3. 安装后，启动 Visual Studio Code，然后在 **“扩展”** 选项卡 (CTRL+SHIFT+X) 上，搜索并安装以下 Microsoft 扩展：
     - Python
     - C#
     - Azure Functions

@@ -21,7 +21,7 @@ lab:
 如果尚未将 **AI-102-AIEngineer** 代码存储库克隆到你要在此实验室中使用的环境，请按照以下步骤克隆它。否则，请在 Visual Studio Code 中打开克隆的文件夹。
 
 1. 启动 Visual Studio Code。
-2. 打开面板 (Shift+Ctrl+P) 并运行 **Git: Clone** 命令，将 `https://github.com/MicrosoftLearning/AI-102-AIEngineer` 存储库克隆到本地文件夹（具体克隆到哪个文件夹无关紧要）。
+2. 打开面板 (Shift+Ctrl+P) 并运行 **Git: Clone** 命令，将 `https://github.com/MicrosoftLearning/AI-102ZH-Designing-and-Implementing-a-Microsoft-Azure-AI-Solution` 存储库克隆到本地文件夹（具体克隆到哪个文件夹无关紧要）。
 3. 克隆存储库后，在 Visual Studio Code 中打开文件夹。
 4. 等待其他文件安装完毕，以支持存储库中的 C# 代码项目。
 
@@ -34,8 +34,7 @@ lab:
 - *创作*资源：用于定义、训练和测试语言理解应用。这必须是 Azure 订阅中的 **“语言理解 - 创作”** 资源。
 - *预测*资源：用于发布语言理解应用并处理来自使用该应用的客户端应用程序的请求。这可以是 Azure 订阅中的 **“语言理解”** 资源，也可以是 **“认知服务”** 资源。
 
-     > **重要事项**：
-	 创作资源必须在三个*区域* （欧洲、澳大利亚或美国）之一中创建。在欧洲或澳大利亚创作资源中创建的语言理解应用只能分别部署到欧洲或澳大利亚的预测资源；在美国创作资源中创建的模型可以部署到除欧洲和澳大利亚之外的任何 Azure 位置中的预测资源。有关匹配创作和预测位置的详细信息，请参阅[创作和发布区域文档](https://docs.microsoft.com/azure/cognitive-services/luis/luis-reference-regions)。
+     > **重要事项**： 创作资源必须在三个*区域* （欧洲、澳大利亚或美国）之一中创建。在欧洲或澳大利亚创作资源中创建的语言理解应用只能分别部署到欧洲或澳大利亚的预测资源；在美国创作资源中创建的模型可以部署到除欧洲和澳大利亚之外的任何 Azure 位置中的预测资源。有关匹配创作和预测位置的详细信息，请参阅[创作和发布区域文档](https://docs.microsoft.com/azure/cognitive-services/luis/luis-reference-regions)。
 
 如果还没有语言理解创作资源和预测资源，请执行以下操作：
 

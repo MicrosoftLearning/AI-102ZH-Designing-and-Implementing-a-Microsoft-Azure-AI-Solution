@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: '检测、分析和识别人脸'
     module: '模块 10 - 检测、分析和识别人脸'
@@ -13,7 +13,7 @@ lab:
 如果尚未克隆用于本课程的存储库，请克隆它：
 
 1. 启动 Visual Studio Code。
-2. 打开面板 (Shift+Ctrl+P) 并运行 **Git: Clone** 命令，将 `https://github.com/MicrosoftLearning/AI-102-AIEngineer` 存储库克隆到本地文件夹（具体克隆到哪个文件夹无关紧要）。
+2. 打开面板 (SHIFT+CTRL+P) 并运行 **Git:Clone** 命令，将 `https://github.com/MicrosoftLearning/AI-102ZH-Designing-and-Implementing-a-Microsoft-Azure-AI-Solution` 存储库克隆到本地文件夹（具体克隆到哪个文件夹无关紧要）。
 3. 克隆存储库后，在 Visual Studio Code 中打开文件夹。
 4. 等待其他文件安装完毕，以支持存储库中的 C# 代码项目。
 
@@ -23,7 +23,7 @@ lab:
 
 如果你的订阅中还没有**认知服务**资源，需要预配一个。
 
-1. 打开 Azure 门户 (`https://portal.azure.com`)，使用与你的 Azure 订阅关联的 Microsoft 帐户登录。
+1. 打开 Azure 门户 `https://portal.azure.com`，使用与你的 Azure 订阅关联的 Microsoft 帐户登录。
 2. 选择 **“&#65291;创建资源”** 按钮，搜索 *“认知服务”*，并使用以下设置创建一个**认知服务**资源：
     - **订阅**： *你的 Azure 订阅*
     - **资源组**： *选择或创建一个资源组（如果你使用的是受限订阅，则可能无权创建新资源组，在此情况下，可使用一个已提供的资源组）*
@@ -43,46 +43,47 @@ lab:
 1. 在 Visual Studio Code 的 **“资源管理器”** 窗格中，浏览到 **19-face** 文件夹，并根据你的语言首选项展开 **C-Sharp** 文件夹或 **Python** 文件夹。
 2. 右键单击 **computer-vision** 文件夹，并打开集成终端。然后通过运行适用于你的语言首选项的命令，安装计算机视觉 SDK 包：
 
-**C#**
+    **C#**
 
-```
-dotnet add package Microsoft.Azure.CognitiveServices.Vision.ComputerVision --version 6.0.0
-```
+    ```
+    dotnet add package Microsoft.Azure.CognitiveServices.Vision.ComputerVision --version 6.0.0
+    ```
 
-**Python**
+    **Python**
 
-```
-pip install azure-cognitiveservices-vision-computervision==0.7.0
-```
+    ```
+    pip install azure-cognitiveservices-vision-computervision==0.7.0
+    ```
     
 3. 查看 **computer-vision** 文件夹的内容，并注意其中包含一个配置设置文件：
     - **C#**： appsettings.json
     - **Python**： .env
 
-    打开配置文件，然后更新其中包含的配置值，以反映认知服务资源的**终结点**和身份验证密**钥**。保存更改。
-4. 请注意，**computer-vision**  文件夹中包含客户端应用程序的代码文件：
+4. 打开配置文件，然后更新其中包含的配置值，以反映认知服务资源的终**结点**和身份验证**密钥**。保存更改。
+
+5. 请注意，**computer-vision** 文件夹中包含客户端应用程序的代码文件：
 
     - **C#**： Program.cs
-    - **Python**： detect-faces&period;py
+    - **Python**： detect-faces.py
 
-    打开代码文件，并在顶部的现有命名空间引用下找到注释 **“导入命名空间”**。然后在此注释下添加以下特定于语言的代码，以导入使用计算机视觉 SDK 所需的命名空间：
+6. 打开代码文件，并在顶部的现有命名空间引用下找到注释 **“导入命名空间”**。然后在此注释下添加以下特定于语言的代码，以导入使用计算机视觉 SDK 所需的命名空间：
 
-**C#**
+    **C#**
 
-```C#
-// 导入命名空间
-using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
-using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
-```
+    ```C#
+    // 导入命名空间
+    using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
+    using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
+    ```
 
-**Python**
+    **Python**
 
-```Python
-# 导入命名空间
-from azure.cognitiveservices.vision.computervision import ComputerVisionClient
-from azure.cognitiveservices.vision.computervision.models import VisualFeatureTypes
-from msrest.authentication import CognitiveServicesCredentials
-```
+    ```Python
+    # 导入命名空间
+    from azure.cognitiveservices.vision.computervision import ComputerVisionClient
+    from azure.cognitiveservices.vision.computervision.models import VisualFeatureTypes
+    from msrest.authentication import CognitiveServicesCredentials
+    ```
 
 ## 查看要分析的图像
 
@@ -95,48 +96,48 @@ from msrest.authentication import CognitiveServicesCredentials
 
 现在，你可使用 SDK 来调用计算机视觉服务并检测图像中的人脸。
 
-1. 在客户端应用程序的代码文件（**Program.cs** 或 **detect-faces&period;py**）中，可在 **Main** 函数中看到已提供用于加载配置设置的代码。然后查找注释 **“对计算机视觉对象客户端进行身份验证”**。然后在此注释下添加以下特定于语言的代码，以创建计算机视觉对象客户端对象并对其进行身份验证：
+1. 在客户端应用程序的代码文件（**Program.cs** 或 **detect-faces.py**）中，可在 **Main** 函数中看到已提供用于加载配置设置的代码。然后查找注释 **“对计算机视觉对象客户端进行身份验证”**。然后在此注释下添加以下特定于语言的代码，以创建计算机视觉对象客户端对象并对其进行身份验证：
 
-**C#**
+    **C#**
 
-```C#
-// 对计算机视觉对象客户端进行身份验证
-ApiKeyServiceClientCredentials credentials = new ApiKeyServiceClientCredentials(cogSvcKey);
-cvClient = new ComputerVisionClient(credentials)
-{
-    Endpoint = cogSvcEndpoint
-};
-```
+    ```C#
+    // 对计算机视觉对象客户端进行身份验证
+    ApiKeyServiceClientCredentials credentials = new ApiKeyServiceClientCredentials(cogSvcKey);
+    cvClient = new ComputerVisionClient(credentials)
+    {
+        Endpoint = cogSvcEndpoint
+    };
+    ```
 
-**Python**
+    **Python**
 
-```Python
-# 对计算机视觉对象客户端进行身份验证
-credential = CognitiveServicesCredentials(cog_key) 
-cv_client = ComputerVisionClient(cog_endpoint, credential)
-```
+    ```Python
+    # 对计算机视觉对象客户端进行身份验证
+    credential = CognitiveServicesCredentials(cog_key) 
+    cv_client = ComputerVisionClient(cog_endpoint, credential)
+    ```
 
 2. 在 **Main** 函数中，可在你刚刚添加的代码下看到，代码指定了图像文件的路径，然后将图像路径传递给名为 **AnalyzeFaces** 的函数。此函数尚未完全实现。
 
 3. 在 **AnalyzeFaces** 函数的注释 **“指定要检索的特征（人脸）”** 下，添加以下代码：
 
-**C#**
+    **C#**
 
-```C#
-// 指定要检索的特征（人脸）
-List<VisualFeatureTypes?> features = new List<VisualFeatureTypes?>()
-{
-    VisualFeatureTypes.Faces
-};
-```
+    ```C#
+    // 指定要检索的特征（人脸）
+    List<VisualFeatureTypes?> features = new List<VisualFeatureTypes?>()
+    {
+        VisualFeatureTypes.Faces
+    };
+    ```
 
-**Python**
+    **Python**
 
-```Python
-# 指定要检索的特征（人脸）
-features = [VisualFeatureTypes.faces]
-```
-    
+    ```Python
+    # 指定要检索的特征（人脸）
+    features = [VisualFeatureTypes.faces]
+    ```
+
 4. 在 **AnalyzeFaces** 函数的注释 **“获取图像分析”** 下，添加以下代码：
 
 **C#**
@@ -211,20 +212,20 @@ with open(image_file, mode="rb") as image_data:
 
         print('Results saved in', outputfile)
 ```
-    
+
 5. 保存你的更改并返回到 **computer-vision** 文件夹的集成终端，然后输入以下命令以运行程序：
 
-**C#**
+    **C#**
 
-```
-dotnet run
-```
+    ```
+    dotnet run
+    ```
 
-**Python**
+    **Python**
 
-```
-python detect-faces.py
-```
+    ```
+    python detect-faces.py
+    ```
 
 6. 查看输出，它应该会指出检测到的人脸数。
 7. 查看在代码文件所在的同一文件夹中生成的 **detected_faces.jpg** 文件，以查看带有批注的人脸。本例的代码使用人脸特征来估计图像中每个人的年龄，并使用边界框坐标来绘制框住每张人脸的矩形。
@@ -236,69 +237,70 @@ python detect-faces.py
 1. 在 Visual Studio Code 的 **“资源管理器”** 窗格中，浏览到 **19-face** 文件夹，并根据你的语言首选项展开 **C-Sharp** 文件夹或 **Python** 文件夹。
 2. 右键单击 **face-api** 文件夹，并打开集成终端。然后通过运行适用于你的语言首选项的命令，安装人脸 SDK 包：
 
-**C#**
+    **C#**
 
-```
-dotnet add package Microsoft.Azure.CognitiveServices.Vision.Face --version 2.6.0-preview.1
-```
+    ```
+    dotnet add package Microsoft.Azure.CognitiveServices.Vision.Face --version 2.6.0-preview.1
+    ```
 
-**Python**
+    **Python**
 
-```
-pip install azure-cognitiveservices-vision-face==0.4.1
-```
+    ```
+    pip install azure-cognitiveservices-vision-face==0.4.1
+    ```
     
 3. 查看 **face-api** 文件夹的内容，并注意其中包含一个配置设置文件：
     - **C#**： appsettings.json
     - **Python**： .env
 
-    打开配置文件，然后更新其中包含的配置值，以反映认知服务资源的**终结点**和身份验证密 **钥**。保存更改。
-4. 请注意，**face-api** 文件夹中包含客户端应用程序的代码文件：
+4. 打开配置文件，然后更新其中包含的配置值，以反映认知服务资源的终**结点**和身份验证**密钥**。保存更改。
+
+5. 请注意，**face-api** 文件夹中包含客户端应用程序的代码文件：
 
     - **C#**： Program.cs
-    - **Python**： analyze-faces&period;py
+    - **Python**： analyze-faces.py
 
-    打开代码文件，并在顶部的现有命名空间引用下找到注释 **“导入命名空间”**。然后在此注释下添加以下特定于语言的代码，以导入使用计算机视觉 SDK 所需的命名空间：
+6. 打开代码文件，并在顶部的现有命名空间引用下找到注释 **“导入命名空间”**。然后在此注释下添加以下特定于语言的代码，以导入使用计算机视觉 SDK 所需的命名空间：
 
-**C#**
+    **C#**
 
-```C#
-// 导入命名空间
-using Microsoft.Azure.CognitiveServices.Vision.Face;
-using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
-```
+    ```C#
+    // 导入命名空间
+    using Microsoft.Azure.CognitiveServices.Vision.Face;
+    using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
+    ```
 
-**Python**
+    **Python**
 
-```Python
-# 导入命名空间
-from azure.cognitiveservices.vision.face import FaceClient
-from azure.cognitiveservices.vision.face.models import FaceAttributeType
-from msrest.authentication import CognitiveServicesCredentials
-```
+    ```Python
+    # 导入命名空间
+    from azure.cognitiveservices.vision.face import FaceClient
+    from azure.cognitiveservices.vision.face.models import FaceAttributeType
+    from msrest.authentication import CognitiveServicesCredentials
+    ```
 
-5. 请注意，**Main** 函数中已提供用于加载配置设置的代码。然后查找注释 **“对人脸客户端进行身份验证”**。然后在此注释下添加以下特定于语言的代码，以创建 **FaceClient** 对象并对其进行身份验证：
+7. 请注意，**Main** 函数中已提供用于加载配置设置的代码。然后查找注释 **“对人脸客户端进行身份验证”**。然后在此注释下添加以下特定于语言的代码，以创建 **FaceClient** 对象并对其进行身份验证：
 
-**C#**
+    **C#**
 
-```C#
-// 对人脸客户端进行身份验证
-ApiKeyServiceClientCredentials credentials = new ApiKeyServiceClientCredentials(cogSvcKey);
-faceClient = new FaceClient(credentials)
-{
-    Endpoint = cogSvcEndpoint
-};
-```
+    ```C#
+    // 对人脸客户端进行身份验证
+    ApiKeyServiceClientCredentials credentials = new ApiKeyServiceClientCredentials(cogSvcKey);
+    faceClient = new FaceClient(credentials)
+    {
+        Endpoint = cogSvcEndpoint
+    };
+    ```
 
-**Python**
+    **Python**
 
-```Python
-# 对人脸客户端进行身份验证
-credentials = CognitiveServicesCredentials(cog_key)
-face_client = FaceClient(cog_endpoint, credentials)
-```
+    ```Python
+    # 对人脸客户端进行身份验证
+    credentials = CognitiveServicesCredentials(cog_key)
+    face_client = FaceClient(cog_endpoint, credentials)
+    ```
 
-6. 在 **Main** 函数中，可在你刚刚添加的代码下看到，代码显示了一个菜单，可通过该菜单调用代码中的函数以探索人脸服务的功能。你将在此练习的剩余部分中实现这些函数。
+8. 在 **Main** 函数中，可在你刚刚添加的代码下看到，代码显示了一个菜单，可通过该菜单调用代码中的函数以探索人脸服务的功能。你将在此练习的剩余部分中实现这些函数。
 
 ## 检测和分析人脸
 
@@ -307,26 +309,26 @@ face_client = FaceClient(cog_endpoint, credentials)
 1. 在应用程序的代码文件中，在 **Main** 函数中检查用户选择菜单选项 **1** 时运行的代码。此代码会调用 **DetectFaces** 函数并传递图像文件的路径。
 2. 在代码文件中查找 **DetectFaces** 函数，并在注释 **“指定要检索的面部特征”** 下添加以下代码：
 
-**C#**
+    **C#**
 
-```C#
-// 指定要检索的面部特征
-List<FaceAttributeType?> features = new List<FaceAttributeType?>
-{
-    FaceAttributeType.Age,
-    FaceAttributeType.Emotion,
-    FaceAttributeType.Glasses
-};
-```
+    ```C#
+    // 指定要检索的面部特征
+    List<FaceAttributeType?> features = new List<FaceAttributeType?>
+    {
+        FaceAttributeType.Age,
+        FaceAttributeType.Emotion,
+        FaceAttributeType.Glasses
+    };
+    ```
 
-**Python**
+    **Python**
 
-```Python
-# 指定要检索的面部特征
-features = [FaceAttributeType.age,
-            FaceAttributeType.emotion,
-            FaceAttributeType.glasses]
-```
+    ```Python
+    # 指定要检索的面部特征
+    features = [FaceAttributeType.age,
+                FaceAttributeType.emotion,
+                FaceAttributeType.glasses]
+    ```
 
 3. 在 **DetectFaces** 函数中刚刚添加的代码下，查找注释 **“获取人脸”** 并添加以下代码：
 
@@ -433,28 +435,28 @@ with open(image_file, mode="rb") as image_data:
 4. 检查添加到 **DetectFaces** 函数的代码。该代码分析了图像文件，并检测了其中包含的任何人脸及其特征（年龄、情绪以及是否佩戴眼镜）。该代码还会显示每张人脸的详细信息（包括为每张人脸分配的唯一人脸标识符）；并使用边界框在图像上标出了人脸所在的位置。
 5. 保存你的更改并返回到 **face-api** 文件夹的集成终端，然后输入以下命令以运行程序：
 
-**C#**
+    **C#**
 
-```
-dotnet run
-```
+    ```
+    dotnet run
+    ```
 
-*C# 输出可能显示有关异步函数在使用 **await** 运算符的警告。可以忽略该警告。*
+    *C# 输出可能显示有关异步函数在使用 **await** 运算符的警告。可以忽略该警告。*
 
-**Python**
+    **Python**
 
-```
-python analyze-faces.py
-```
+    ```
+    python analyze-faces.py
+    ```
 
 6. 在出现提示时输入 **1** 并观察输出，输出中应包含检测到的每张人脸的 ID 和特征。
 7. 查看在代码文件所在的同一文件夹中生成的 **detected_faces.jpg** 文件，以查看带有批注的人脸。
 
 ## 比较人脸
 
-一个常见的任务是比较人脸，并查找相似的人脸。在此例中，你不需要确定图像中每个人的*身份*，而只需确定是否有多张图像显示了*同一*人（或者至少是外表相似的人）。 
+一个常见的任务是比较人脸，并查找相似的人脸。在此例中，你不需要*确定*图像中每个人的身份，而只需确定是否有多张图像显示了*同一*人（或者至少是外表相似的人）。 
 
-1. 在应用程序的代码文件中，在 **Main** 函数中检查用户选择菜单选项 **2** 时运行的代码。此代码会调用 **CompareFaces** 函数并传递两个图像文件（**person1.jpg** 和 **people.jpg**）的路径。
+1. 在应用程序的代码文件中，在 vMain** 函数中检查用户选择菜单选项 **2** 时运行的代码。此代码会调用 **CompareFaces** 函数并传递两个图像文件（**person1.jpg** 和 **people.jpg**）的路径。
 2. 在代码文件中查找 **CompareFaces** 函数，并在用于在控制台中显示消息的现有代码下添加以下代码：
 
 **C#**
@@ -580,21 +582,21 @@ with open(image_2, mode="rb") as image_data:
 3. 检查添加到 **CompareFaces** 函数的代码。该代码可查找图像 1 中的第一张人脸，并在名为 **face_to_match.jpg** 的新图像文件中对其进行批注。然后该代码会查找图像 2 中的所有人脸，并使用其人脸 ID 查找与图像 1 中相似的人脸。相似的人脸会经过批注，并保存在名为 **matched_faces.jpg** 的新图像中。
 4. 保存你的更改并返回到 **face-api** 文件夹的集成终端，然后输入以下命令以运行程序：
 
-**C#**
+    **C#**
 
-```
-dotnet run
-```
+    ```
+    dotnet run
+    ```
 
-*C# 输出可能显示有关异步函数在使用 **await** 运算符的警告。可以忽略该警告。*
+    *C# 输出可能显示有关异步函数在使用 **await** 运算符的警告。可以忽略该警告。*
 
-**Python**
+    **Python**
 
-```
-python analyze-faces.py
-```
+    ```
+    python analyze-faces.py
+    ```
     
-5. 在出现提示时输入 **2** 并观察输出。然后查看在代码文件所在的同一文件夹中生成的 **face_to_match.jpg** 和 **matched_faces.jpg**文件，以查看匹配的人脸。
+5. 在出现提示时输入 **2** 并观察输出。然后查看在代码文件所在的同一文件夹中生成的 **face_to_match.jpg** 和 **matched_faces.jpg** 文件，以查看匹配的人脸。
 6. 编辑 **Main** 函数中菜单选项 **2** 对应的代码，以将 **person2.jpg** 与 **people.jpg** 进行比较，然后重新运行程序并查看结果。
 
 ## 训练面部识别模型
@@ -700,19 +702,19 @@ for person in people:
     - 在组中检索指定人员列表并显示他们。
 5. 保存你的更改并返回到 **face-api** 文件夹的集成终端，然后输入以下命令以运行程序：
 
-**C#**
+    **C#**
 
-```
-dotnet run
-```
+    ```
+    dotnet run
+    ```
 
-*C# 输出可能显示有关异步函数在使用 **await** 运算符的警告。可以忽略该警告。*
+    *C# 输出可能显示有关异步函数在使用 **await** 运算符的警告。可以忽略该警告。*
 
-**Python**
+    **Python**
 
-```
-python analyze-faces.py
-```
+    ```
+    python analyze-faces.py
+    ```
 
 6. 在出现提示时输入 **3** 并观察输出，注意到所创建的 **PersonGroup** 中包含两人。
 
@@ -841,19 +843,19 @@ with open(image_file, mode="rb") as image_data:
 3. 检查添加到 **RecognizeFaces** 函数的代码。该代码会在图像中查找人脸并创建其 ID 列表。然后会使用人群组来尝试识别人脸 ID 列表中各人脸的身份。已识别的人脸会批注有已识别人员的姓名，结果保存在 **recognized_faces.jpg** 中。
 4. 保存你的更改并返回到 **face-api** 文件夹的集成终端，然后输入以下命令以运行程序：
 
-**C#**
+    **C#**
 
-```
-dotnet run
-```
+    ```
+    dotnet run
+    ```
 
-*C# 输出可能显示有关异步函数在使用 **await** 运算符的警告。可以忽略该警告。*
+    *C# 输出可能显示有关异步函数在使用 **await** 运算符的警告。可以忽略该警告。*
 
-**Python**
+    **Python**
 
-```
-python analyze-faces.py
-```
+    ```
+    python analyze-faces.py
+    ```
 
 5. 在出现提示时输入 **4** 并观察输出。然后查看在代码文件所在的同一文件夹中生成的 **recognized_faces.jpg** 文件，以查看已识别的人员。
 6. 编辑 **Main** 函数中菜单选项 **4** 对应的代码，以识别 **people2.jpg** 中的人脸，然后重新运行程序并查看结果。应该已识别相同的人员
@@ -863,7 +865,7 @@ python analyze-faces.py
 面部识别经常用于身份验证。使用人脸服务，可通过将图像中的人脸与另一张人脸或者 **PersonGroup** 中注册的人员进行比较来验证该人脸。
 
 1. 在应用程序的代码文件中，在 **Main** 函数中检查用户选择菜单选项 **5** 时运行的代码。此代码会调用 **VerifyFace** 函数，并传递图像文件 (**person1.jpg**) 的路径、姓名以及要用于人脸连识别的 **PeopleGroup** 的 ID。
-2. 在代码文件中查找 **VerifyFace** 函数，并在注释 **“获取人员组中的人员的 ID”** （用于显示结果的代码上方）下添加以下代码：
+2. 在代码文件中查找 **VerifyFace**  函数，并在注释 **“获取人员组中的人员的 ID”** （用于显示结果的代码上方）下添加以下代码：
 
 **C#**
 
@@ -920,17 +922,17 @@ for person in people:
 3. 检查添加到 **VerifyFace** 函数的代码。它会在组中查找具有指定姓名的人员的 ID。如果该人员存在，则代码会获取图像中第一张人脸的人脸 ID。最后，如果图像中包含人脸，则代码会根据指定人员的 ID 对其进行验证。
 4. 保存你的更改并返回到 **face-api** 文件夹的集成终端，然后输入以下命令以运行程序：
 
-**C#**
+    **C#**
 
-```
-dotnet run
-```
+    ```
+    dotnet run
+    ```
 
-**Python**
+    **Python**
 
-```
-python analyze-faces.py
-```
+    ```
+    python analyze-faces.py
+    ```
 
 5. 在出现提示时输入 **5** 并观察结果。
 6. 编辑 **Main** 函数中菜单选项 **5** 对应的代码，以尝试各姓名以及图像 **person1.jpg** 和 **person2.jpg** 的不同组合。

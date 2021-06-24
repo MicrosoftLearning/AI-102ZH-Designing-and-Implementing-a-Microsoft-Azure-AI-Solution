@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: '读取图像中的文本'
     module: '模块 11 - 读取图像和文档中的文本'
@@ -13,17 +13,17 @@ lab:
 如果尚未克隆用于本课程的存储库，请克隆它：
 
 1. 启动 Visual Studio Code。
-2. 打开面板 (Shift+Ctrl+P) 并运行 **Git: Clone** 命令，将 `https://github.com/MicrosoftLearning/AI-102-AIEngineer` 存储库克隆到本地文件夹（具体克隆到哪个文件夹无关紧要）。
+2. 打开面板 (SHIFT+CTRL+P) 并运行 **Git: Clone** 命令，将 `https://github.com/MicrosoftLearning/AI-102ZH-Designing-and-Implementing-a-Microsoft-Azure-AI-Solution` 存储库克隆到本地文件夹（具体克隆到哪个文件夹无关紧要）。
 3. 克隆存储库后，在 Visual Studio Code 中打开文件夹。
 4. 等待其他文件安装完毕，以支持存储库中的 C# 代码项目。
 
-    > **备注**： 如果系统提示你添加生成和调试所需的资产，请选择 **“以后再说”**。
+    > **备注**：如果系统提示你添加生成和调试所需的资产，请选择 **“以后再说”**。
 
 ## 预配认知服务资源
 
 如果你的订阅中还没有**认知服务**资源，需要预配一个。
 
-1. 打开 Azure 门户 (`https://portal.azure.com`)，使用与你的 Azure 订阅关联的 Microsoft 帐户登录。
+1. 打开 Azure 门户 `https://portal.azure.com`，使用与你的 Azure 订阅关联的 Microsoft 帐户登录。
 2. 选择 **“&#65291;创建资源”** 按钮，搜索 *“认知服务”*，并使用以下设置创建一个**认知服务**资源：
     - **订阅**： *你的 Azure 订阅*
     - **资源组**： *选择或创建一个资源组（如果你使用的是受限订阅，则可能无权创建新资源组，在此情况下，可使用一个已提供的资源组）*
@@ -59,11 +59,11 @@ pip install azure-cognitiveservices-vision-computervision==0.7.0
     - **C#**： appsettings.json
     - **Python**： .env
 
-    打开配置文件，然后更新其中包含的配置值，以反映认知服务资源的**终结点**和身份验证密**钥**。保存更改。
+    打开配置文件，然后更新其中包含的配置值，以反映认知服务资源的终**结点**和身份验证**密钥**。保存更改。
 4. 请注意，**read-text** 文件夹中包含客户端应用程序的代码文件：
 
-    - **C#**： Program.cs
-    - **Python**： read-text&period;py
+    - **C#** ：Program.cs
+    - **Python**： read-text.py
 
     打开代码文件，并在顶部的现有命名空间引用下找到注释 **“导入命名空间”**。然后在此注释下添加以下特定于语言的代码，以导入使用计算机视觉 SDK 所需的命名空间：
 
@@ -208,7 +208,7 @@ python read-text.py
 
 ## 使用读取 API
 
-**读取** API 使用比 OCR API 更新的文本识别模型，并且对于包含大量文本的大型图像效果更佳。它还支持从 *.pdf* 文件中提取文本，并且可识别印刷体文本（多种语言）和手写文本（英语）。
+**读取** API 使用比 OCR API 更新的文本识别模型，并且对于包含大量文本的大型图像效果更佳。它还支持从 **pdf** 文件中提取文本，并且可识别印刷体文本（多种语言）和手写文本（英语）。
 
 **读取** API 使用异步操作模型，在该模型中，在提交开始文本识别的请求后，即可使用请求返回的操作 ID 来检查进度和检索结果。
 
