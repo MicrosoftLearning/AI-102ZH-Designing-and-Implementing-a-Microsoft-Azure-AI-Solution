@@ -1,4 +1,4 @@
-﻿---
+---
 lab:
     title: '使用 Bot Framework Composer 创建机器人'
     module: '模块 7 - 对话式 AI 和 Azure 机器人服务'
