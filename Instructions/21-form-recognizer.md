@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: '从表单中提取数据'
     module: '模块 11 - 读取图像和文档中的文本'
@@ -219,7 +219,7 @@ python test-model.py
 2. 打开 **Form_1.jpg.labels.json** 并查看它包含的 JSON。此文件标识了 **Form_1.jpg** 训练文档中的命名字段的位置和值。
 3. 打开 **Form_1.jpg.ocr.json** 并查看它包含的 JSON。此文件包含 **Form_1.jpg** 的文本布局（包括表单中所有文本区域的位置）的 JSON 表示形式。
 
-    *在此练习中，我们为你提供了字段信息文件。对于你自己的项目，可以使用[示例标签工具](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool)创建这些文件。使用该工具时，将自动创建字段信息文件并存储到连接的存储帐户。*
+    *在此练习中，我们为你提供了字段信息文件。对于你自己的项目，可以使用[示例标签工具](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/label-tool)创建这些文件。使用该工具时，将自动创建字段信息文件并存储到连接的存储帐户。*
 
 4. 在 **train-model** 文件夹中，打开训练应用程序的代码文件：
 
