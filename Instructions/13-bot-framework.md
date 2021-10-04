@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: '使用 Bot Framework SDK 创建机器人'
     module: '模块 7 - 对话式 AI 和 Azure 机器人服务'
@@ -150,7 +150,7 @@ protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivi
     if (inputMessage.ToLower().StartsWith("what") && inputMessage.ToLower().Contains("time"))
     {
         var now = DateTime.Now;
-        responseMessage = "The time is " + now.Hour.ToString() + ":"+ now.Minute.ToString("D2");
+        responseMessage = "The time is " + now.Hour.ToString() + ":" + now.Minute.ToString("D2");
     }
     await turnContext.SendActivityAsync(MessageFactory.Text(responseMessage, responseMessage), cancellationToken);
 }
@@ -227,7 +227,7 @@ az account set --subscription "<YOUR_SUBSCRIPTION_ID>"
 3. 输入以下命令以使用密码 **Super$ecretPassw0rd** 为 **TimeBot** 创建应用程序注册（如果需要，可以使用其他显示名称和密码，但请记下它们 - 稍后你将用到它们）。
 
 ```
-az ad app create --display-name "TimeBot" --password "Super$ecretPassw0rd" --available-to-other-tenants
+az ad app create --display-name "TimeBot" --password 'Super$ecretPassw0rd' --available-to-other-tenants
 ```
 
 4. 命令完成后，将显示大的 JSON 响应。在此响应中，找到 **appId** 值并记下该值。你将在下一个过程用到该值。
@@ -261,7 +261,7 @@ az deployment group create --resource-group "YOUR_RESOURCE_GROUP" --template-fil
 **C#**
 
 ```
-az bot prepare-deploy --lang Csharp --code-dir "."--proj-file-path "TimeBot.csproj"
+az bot prepare-deploy --lang Csharp --code-dir "." --proj-file-path "TimeBot.csproj"
 ```
 
 **Python**
