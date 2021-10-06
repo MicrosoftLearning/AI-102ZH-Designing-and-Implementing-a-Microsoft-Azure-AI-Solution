@@ -70,7 +70,7 @@ pip install azure-cognitiveservices-vision-computervision==0.7.0
 **C#**
 
 ```C#
-// 导入命名空间
+// import namespaces
 using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
 using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
 ```
@@ -78,7 +78,7 @@ using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
 **Python**
 
 ```Python
-# 导入命名空间
+# import namespaces
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from azure.cognitiveservices.vision.computervision.models import VisualFeatureTypes
 from msrest.authentication import CognitiveServicesCredentials
@@ -100,7 +100,7 @@ from msrest.authentication import CognitiveServicesCredentials
 **C#**
 
 ```C#
-// 对计算机视觉对象客户端进行身份验证
+// Authenticate Computer Vision client
 ApiKeyServiceClientCredentials credentials = new ApiKeyServiceClientCredentials(cogSvcKey);
 cvClient = new ComputerVisionClient(credentials)
 {
@@ -111,7 +111,7 @@ cvClient = new ComputerVisionClient(credentials)
 **Python**
 
 ```Python
-# 对计算机视觉对象客户端进行身份验证
+# Authenticate Computer Vision client
 credential = CognitiveServicesCredentials(cog_key) 
 cv_client = ComputerVisionClient(cog_endpoint, credential)
 ```
@@ -123,7 +123,7 @@ cv_client = ComputerVisionClient(cog_endpoint, credential)
 **C#**
 
 ```C#
-// 指定要检索的特征
+// Specify features to be retrieved
 List<VisualFeatureTypes?> features = new List<VisualFeatureTypes?>()
 {
     VisualFeatureTypes.Description,
@@ -138,7 +138,7 @@ List<VisualFeatureTypes?> features = new List<VisualFeatureTypes?>()
 **Python**
 
 ```Python
-# 指定要检索的特征
+# Specify features to be retrieved
 features = [VisualFeatureTypes.description,
             VisualFeatureTypes.tags,
             VisualFeatureTypes.categories,
@@ -152,30 +152,30 @@ features = [VisualFeatureTypes.description,
 **C#**
 
 ```C
-// 获取图像分析
+// Get image analysis
 using (var imageData = File.OpenRead(imageFile))
 {    
     var analysis = await cvClient.AnalyzeImageInStreamAsync(imageData, features);
 
-    // 获取图像描述文字
+    // get image captions
     foreach (var caption in analysis.Description.Captions)
     {
         Console.WriteLine($"Description: {caption.Text} (confidence: {caption.Confidence.ToString("P")})");
     }
 
-    // 获取图像标记
+    // Get image tags
 
 
-    // 获取图像类别
+    // Get image categories
 
 
-    // 获取图像中的品牌
+    // Get brands in the image
 
 
-    // 获取图像中的物体
+    // Get objects in the image
 
 
-    // 获取审核评级
+    // Get moderation ratings
     
 
 }            
@@ -184,27 +184,27 @@ using (var imageData = File.OpenRead(imageFile))
 **Python**
 
 ```Python
-# 获取图像分析
+# Get image analysis
 with open(image_file, mode="rb") as image_data:
     analysis = cv_client.analyze_image_in_stream(image_data , features)
 
-# 获取图像说明
+# Get image description
 for caption in analysis.description.captions:
     print("Description: '{}' (confidence: {:.2f}%)".format(caption.text, caption.confidence * 100))
 
-# 获取图像标记
+# Get image tags
 
 
-# 获取图像类别 
+# Get image categories 
 
 
-# 获取图像中的品牌
+# Get brands in the image
 
 
-# 获取图像中的物体
+# Get objects in the image
 
 
-# 获取审核评级
+# Get moderation ratings
 
 ```
     
@@ -235,7 +235,7 @@ python image-analysis.py images/street.jpg
 **C#**
 
 ```C
-// 获取图像标记
+// Get image tags
 if (analysis.Tags.Count > 0)
 {
     Console.WriteLine("Tags:");
@@ -249,14 +249,14 @@ if (analysis.Tags.Count > 0)
 **Python**
 
 ```Python
-# 获取图像标记
+# Get image tags
 if (len(analysis.tags) > 0):
     print("Tags: ")
     for tag in analysis.tags:
         print(" -'{}' (confidence: {:.2f}%)".format(tag.name, tag.confidence * 100))
 ```
 
-2. 保存更改，并针对 **images** 文件夹中的每个图像文件运行一次程序，更改 **Main** 函数中的文件名，并注意到除了图像描述文字外，还会显示建议的标记。
+2. 保存更改，并针对 **images** 文件夹中的每个图像文件运行一次程序，注意到除了图像描述文字外，还会显示建议的标记列表。
 
 ## 获取图像类别
 
@@ -267,16 +267,16 @@ if (len(analysis.tags) > 0):
 **C#**
 
 ```C
-// 获取图像类别（包括名人和地标）
+// Get image categories (including celebrities and landmarks)
 List<LandmarksModel> landmarks = new List<LandmarksModel> {};
 List<CelebritiesModel> celebrities = new List<CelebritiesModel> {};
 Console.WriteLine("Categories:");
 foreach (var category in analysis.Categories)
 {
-    // 显示类别
+    // Print the category
     Console.WriteLine($" -{category.Name} (confidence: {category.Score.ToString("P")})");
 
-    // 获取此类别中的地标
+    // Get landmarks in this category
     if (category.Detail?.Landmarks != null)
     {
         foreach (LandmarksModel landmark in category.Detail.Landmarks)
@@ -288,7 +288,7 @@ foreach (var category in analysis.Categories)
         }
     }
 
-    // 获取此类别中的名人
+    // Get celebrities in this category
     if (category.Detail?.Celebrities != null)
     {
         foreach (CelebritiesModel celebrity in category.Detail.Celebrities)
@@ -301,7 +301,7 @@ foreach (var category in analysis.Categories)
     }
 }
 
-// 如果有地标，则列出它们
+// If there were landmarks, list them
 if (landmarks.Count > 0)
 {
     Console.WriteLine("Landmarks:");
@@ -311,7 +311,7 @@ if (landmarks.Count > 0)
     }
 }
 
-// 如果有名人，则列出他们
+// If there were celebrities, list them
 if (celebrities.Count > 0)
 {
     Console.WriteLine("Celebrities:");
@@ -325,34 +325,34 @@ if (celebrities.Count > 0)
 **Python**
 
 ```Python
-# 获取图像类别（包括名人和地标）
+# Get image categories (including celebrities and landmarks)
 if (len(analysis.categories) > 0):
     print("Categories:")
     landmarks = []
     celebrities = []
     for category in analysis.categories:
-        # 显示类别
+        # Print the category
         print(" -'{}' (confidence: {:.2f}%)".format(category.name, category.score * 100))
         if category.detail:
-            # 获取此类别中的地标
+            # Get landmarks in this category
             if category.detail.landmarks:
                 for landmark in category.detail.landmarks:
                     if landmark not in landmarks:
                         landmarks.append(landmark)
 
-            # 获取此类别中的名人
+            # Get celebrities in this category
             if category.detail.celebrities:
                 for celebrity in category.detail.celebrities:
                     if celebrity not in celebrities:
                         celebrities.append(celebrity)
 
-    # 如果有地标，则列出它们
+    # If there were landmarks, list them
     if len(landmarks) > 0:
         print("Landmarks:")
         for landmark in landmarks:
             print(" -'{}' (confidence: {:.2f}%)".format(landmark.name, landmark.confidence * 100))
 
-    # 如果有名人，则列出他们
+    # If there were celebrities, list them
     if len(celebrities) > 0:
         print("Celebrities:")
         for celebrity in celebrities:
@@ -360,7 +360,7 @@ if (len(analysis.categories) > 0):
 
 ```
     
-2. 保存更改，并针对 **images** 文件夹中的每个图像文件运行一次程序，更改 **Main** 函数中的文件名，并注意到除了图像描述文字和标记外，还会显示建议的类别以及任何已识别的地标或名人（尤其是图像 **building.jpg** 和 **person.jpg** 中的地标和名人）。
+2. 保存更改，并针对 **images** 文件夹中的每个图像文件运行一次程序，注意到除了图像描述文字和标记外，还会显示建议的类别以及任何已识别的地标或名人（尤其是图像 **building.jpg** 和 **person.jpg** 中的地标和名人）。
 
 ## 获取图像中的品牌
 
@@ -371,7 +371,7 @@ if (len(analysis.categories) > 0):
 **C#**
 
 ```C
-// 获取图像中的品牌
+// Get brands in the image
 if (analysis.Brands.Count > 0)
 {
     Console.WriteLine("Brands:");
@@ -385,14 +385,14 @@ if (analysis.Brands.Count > 0)
 **Python**
 
 ```Python
-# 获取图像中的品牌
+# Get brands in the image
 if (len(analysis.brands) > 0):
     print("Brands: ")
     for brand in analysis.brands:
         print(" -'{}' (confidence: {:.2f}%)".format(brand.name, brand.confidence * 100))
 ```
     
-2. 保存更改，并针对 **images** 文件夹中的每个图像文件运行一次程序，更改 **Main** 函数中的文件名，并注意识别的任何品牌（尤其是图像 **person.jpg** 中的品牌）。
+2. 保存更改，并针对 **images** 文件夹中的每个图像文件运行一次程序，注意识别的任何品牌（尤其是图像 **person.jpg** 中的品牌）。
 
 ## 检测图像中的物体并指示其位置
 
@@ -403,12 +403,12 @@ if (len(analysis.brands) > 0):
 **C#**
 
 ```C
-// 获取图像中的物体
+// Get objects in the image
 if (analysis.Objects.Count > 0)
 {
     Console.WriteLine("Objects in image:");
 
-    // 准备要绘制的图像
+    // Prepare image for drawing
     Image image = Image.FromFile(imageFile);
     Graphics graphics = Graphics.FromImage(image);
     Pen pen = new Pen(Color.Cyan, 3);
@@ -417,17 +417,17 @@ if (analysis.Objects.Count > 0)
 
     foreach (var detectedObject in analysis.Objects)
     {
-        // 显示物体名称
+        // Print object name
         Console.WriteLine($" -{detectedObject.ObjectProperty} (confidence: {detectedObject.Confidence.ToString("P")})");
 
-        // 绘制物体边界框
+        // Draw object bounding box
         var r = detectedObject.Rectangle;
         Rectangle rect = new Rectangle(r.X, r.Y, r.W, r.H);
         graphics.DrawRectangle(pen, rect);
         graphics.DrawString(detectedObject.ObjectProperty,font,brush,r.X, r.Y);
 
     }
-    // 保存已批注的图像
+    // Save annotated image
     String output_file = "objects.jpg";
     image.Save(output_file);
     Console.WriteLine("  Results saved in " + output_file);   
@@ -437,33 +437,33 @@ if (analysis.Objects.Count > 0)
 **Python**
 
 ```Python
-# 获取图像中的物体
+# Get objects in the image
 if len(analysis.objects) > 0:
     print("Objects in image:")
 
-    # 准备要绘制的图像
+    # Prepare image for drawing
     fig = plt.figure(figsize=(8, 8))
     plt.axis('off')
     image = Image.open(image_file)
     draw = ImageDraw.Draw(image)
     color = 'cyan'
     for detected_object in analysis.objects:
-        # 显示物体名称
+        # Print object name
         print(" -{} (confidence: {:.2f}%)".format(detected_object.object_property, detected_object.confidence * 100))
         
-        # 绘制物体边界框
+        # Draw object bounding box
         r = detected_object.rectangle
         bounding_box = ((r.x, r.y), (r.x + r.w, r.y + r.h))
         draw.rectangle(bounding_box, outline=color, width=3)
         plt.annotate(detected_object.object_property,(r.x, r.y), backgroundcolor=color)
-    # 保存已批注的图像
+    # Save annotated image
     plt.imshow(image)
     outputfile = 'objects.jpg'
     fig.savefig(outputfile)
     print('  Results saved in', outputfile)
 ```
     
-2. 保存更改，并针对 **images** 文件夹中的每个图像文件运行一次程序，更改 **Main** 函数中的文件名，并注意检测到的任何物体。在每次运行后，查看在代码文件所在的同一文件夹中生成的 **objects.jpg** 文件，以查看带有批注的物体。
+2. 保存更改，并针对 **images** 文件夹中的每个图像文件运行一次程序，注意检测到的任何物体。在每次运行后，查看在代码文件所在的同一文件夹中生成的 **objects.jpg** 文件，以查看带有批注的物体。
 
 ## 获取图像的审核评级
 
@@ -474,7 +474,7 @@ if len(analysis.objects) > 0:
 **C#**
 
 ```C
-// 获取审核评级
+// Get moderation ratings
 string ratings = $"Ratings:\n -Adult: {analysis.Adult.IsAdultContent}\n -Racy: {analysis.Adult.IsRacyContent}\n -Gore: {analysis.Adult.IsGoryContent}";
 Console.WriteLine(ratings);
 ```
@@ -482,14 +482,14 @@ Console.WriteLine(ratings);
 **Python**
 
 ```Python
-# 获取审核评级
+# Get moderation ratings
 ratings = 'Ratings:\n -Adult: {}\n -Racy: {}\n -Gore: {}'.format(analysis.adult.is_adult_content,
                                                                     analysis.adult.is_racy_content,
                                                                     analysis.adult.is_gory_content)
 print(ratings)
 ```
     
-2. 保存更改，并针对 **images** 文件夹中的每个图像文件运行一次程序，更改 **Main** 函数中的文件名，并注意每张图像的评级。
+2. 保存更改，并针对 **images** 文件夹中的每个图像文件运行一次程序，注意每张图像的评级。
 
 > **备注**： 在前面的任务中，你使用了单种方法来分析图像，然后逐步添加代码来分析和显示结果。SDK 还提供了用于建议描述文字、识别标记和检测物体等的单独方法，这意味着你可使用最适合的方法来仅返回所需信息，减少需要返回的数据有效负载的大小。有关更多详细信息，请参阅 [.NET SDK 文档](https://docs.microsoft.com/dotnet/api/overview/azure/cognitiveservices/client/computervision?view=azure-dotnet) 或 [Python SDK 文档](https://docs.microsoft.com/python/api/overview/azure/cognitiveservices/computervision?view=azure-python)。
 
@@ -502,13 +502,13 @@ print(ratings)
 **C#**
 
 ```C
-// 生成缩略图
+// Generate a thumbnail
 using (var imageData = File.OpenRead(imageFile))
 {
-    // 获取缩略图数据
+    // Get thumbnail data
     var thumbnailStream = await cvClient.GenerateThumbnailInStreamAsync(100, 100,imageData, true);
 
-    // 保存缩略图图像
+    // Save thumbnail image
     string thumbnailFileName = "thumbnail.png";
     using (Stream thumbnailFile = File.Create(thumbnailFileName))
     {
@@ -522,12 +522,12 @@ using (var imageData = File.OpenRead(imageFile))
 **Python**
 
 ```Python
-# 生成缩略图
+# Generate a thumbnail
 with open(image_file, mode="rb") as image_data:
-    # 获取缩略图数据
+    # Get thumbnail data
     thumbnail_stream = cv_client.generate_thumbnail_in_stream(100, 100, image_data, True)
 
-# 保存缩略图图像
+# Save thumbnail image
 thumbnail_file_name = 'thumbnail.png'
 with open(thumbnail_file_name, "wb") as thumbnail_file:
     for chunk in thumbnail_stream:
@@ -536,7 +536,7 @@ with open(thumbnail_file_name, "wb") as thumbnail_file:
 print('Thumbnail saved in.', thumbnail_file_name)
 ```
     
-2. 保存更改，并针对 **images** 文件夹中的每个图像文件运行一次程序，在每次运行时更改 **Main** 函数中的文件名，并打开在每张图像的代码文件所在的同一文件夹中生成的 **thumbnail.jpg** 文件。
+2. 保存更改，并针对 **images** 文件夹中的每个图像文件运行一次程序，打开在每张图像的代码文件所在的同一文件夹中生成的 **thumbnail.jpg** 文件。
 
 ## 更多信息
 
