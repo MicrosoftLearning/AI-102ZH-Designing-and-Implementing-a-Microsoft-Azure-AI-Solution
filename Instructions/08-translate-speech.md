@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: '翻译语音'
     module: '模块 4 - 构建支持语音的应用程序'
@@ -72,7 +72,7 @@ lab:
     **C#**
     
     ```C#
-    // 导入命名空间
+    // Import namespaces
     using Microsoft.CognitiveServices.Speech;
     using Microsoft.CognitiveServices.Speech.Audio;
     using Microsoft.CognitiveServices.Speech.Translation;
@@ -81,7 +81,7 @@ lab:
     **Python**
     
     ```Python
-    # 导入命名空间
+    # Import namespaces
     import azure.cognitiveservices.speech as speech_sdk
     ```
 
@@ -90,7 +90,7 @@ lab:
     **C#**
     
     ```C#
-    // 配置翻译
+    // Configure translation
     translationConfig = SpeechTranslationConfig.FromSubscription(cogSvcKey, cogSvcRegion);
     translationConfig.SpeechRecognitionLanguage = "en-US";
     translationConfig.AddTargetLanguage("fr");
@@ -102,7 +102,7 @@ lab:
     **Python**
     
     ```Python
-    # 配置翻译
+    # Configure translation
     translation_config = speech_sdk.translation.SpeechTranslationConfig(cog_key, cog_region)
     translation_config.speech_recognition_language = 'en-US'
     translation_config.add_target_language('fr')
@@ -116,14 +116,14 @@ lab:
     **C#**
     
     ```C#
-    // 配置语音
+    // Configure speech
     speechConfig = SpeechConfig.FromSubscription(cogSvcKey, cogSvcRegion);
     ```
     
     **Python**
     
     ```Python
-    # 配置语音
+    # Configure speech
     speech_config = speech_sdk.SpeechConfig(cog_key, cog_region)
     ```
 
@@ -155,7 +155,7 @@ lab:
     **C#**
     
     ```C#
-    // 翻译语音
+    // Translate speech
     using AudioConfig audioConfig = AudioConfig.FromDefaultMicrophoneInput();
     using TranslationRecognizer translator = new TranslationRecognizer(translationConfig, audioConfig);
     Console.WriteLine("Speak now...");
@@ -169,7 +169,7 @@ lab:
     **Python**
     
     ```Python
-    # 翻译语音
+    # Translate speech
     audio_config = speech_sdk.AudioConfig(use_default_microphone=True)
     translator = speech_sdk.translation.TranslationRecognizer(translation_config, audio_config)
     print("Speak now...")
@@ -218,7 +218,7 @@ lab:
     **C#**
     
     ```C#
-    // 翻译语音
+    // Translate speech
     string audioFile = "station.wav";
     SoundPlayer wavPlayer = new SoundPlayer(audioFile);
     wavPlayer.Play();
@@ -235,7 +235,7 @@ lab:
     **Python**
     
     ```Python
-    # 翻译语音
+    # Translate speech
     audioFile = 'station.wav'
     playsound(audioFile)
     audio_config = speech_sdk.AudioConfig(filename=audioFile)
@@ -280,12 +280,12 @@ lab:
     **C#**
     
     ```C#
-    // 合成翻译
+    // Synthesize translation
     var voices = new Dictionary<string, string>
                     {
-                        ["fr"] = "fr-FR-Julie",
-                        ["es"] = "es-ES-Laura",
-                        ["hi"] = "hi-IN-Kalpana"
+                        ["fr"] = "fr-FR-HenriNeural",
+                        ["es"] = "es-ES-ElviraNeural",
+                        ["hi"] = "hi-IN-MadhurNeural"
                     };
     speechConfig.SpeechSynthesisVoiceName = voices[targetLanguage];
     using SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig);
@@ -299,11 +299,11 @@ lab:
     **Python**
     
     ```Python
-    # 合成翻译
+    # Synthesize translation
     voices = {
-            "fr": "fr-FR-Julie",
-            "es": "es-ES-Laura",
-            "hi": "hi-IN-Kalpana"
+            "fr": "fr-FR-HenriNeural",
+            "es": "es-ES-ElviraNeural",
+            "hi": "hi-IN-MadhurNeural"
     }
     speech_config.speech_synthesis_voice_name = voices.get(targetLanguage)
     speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config)
