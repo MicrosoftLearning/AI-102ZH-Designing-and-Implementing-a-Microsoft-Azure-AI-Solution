@@ -77,7 +77,7 @@ lab:
     **C#**
     
     ```C#
-    // 导入命名空间
+    // Import namespaces
     using Microsoft.CognitiveServices.Speech;
     using Microsoft.CognitiveServices.Speech.Audio;
     ```
@@ -85,7 +85,7 @@ lab:
     **Python**
     
     ```Python
-    # 导入命名空间
+    # Import namespaces
     import azure.cognitiveservices.speech as speech_sdk
     ```
 
@@ -94,15 +94,18 @@ lab:
     **C#**
     
     ```C#
-    // 配置语音服务
+    // Configure speech service
     speechConfig = SpeechConfig.FromSubscription(cogSvcKey, cogSvcRegion);
     Console.WriteLine("Ready to use speech service in " + speechConfig.Region);
+    
+    // Configure voice
+    speechConfig.SpeechSynthesisVoiceName = "en-US-AriaNeural";
     ```
     
     **Python**
     
     ```Python
-    # 配置语音服务
+    # Configure speech service
     speech_config = speech_sdk.SpeechConfig(cog_key, cog_region)
     print('Ready to use speech service in:', speech_config.region)
     ```
@@ -135,7 +138,7 @@ lab:
     **C#**
     
     ```C#
-    // 配置语音识别
+    // Configure speech recognition
     using AudioConfig audioConfig = AudioConfig.FromDefaultMicrophoneInput();
     using SpeechRecognizer speechRecognizer = new SpeechRecognizer(speechConfig, audioConfig);
     Console.WriteLine("Speak now...");
@@ -144,7 +147,7 @@ lab:
     **Python**
     
     ```Python
-    # 配置语音识别
+    # Configure speech recognition
     audio_config = speech_sdk.AudioConfig(use_default_microphone=True)
     speech_recognizer = speech_sdk.SpeechRecognizer(speech_config, audio_config)
     print('Speak now...')
@@ -187,7 +190,7 @@ lab:
     **C#**
 
     ```C#
-    // 配置语音识别
+    // Configure speech recognition
     string audioFile = "time.wav";
     SoundPlayer wavPlayer = new SoundPlayer(audioFile);
     wavPlayer.Play();
@@ -198,7 +201,7 @@ lab:
     **Python**
 
     ```Python
-    # 配置语音识别
+    # Configure speech recognition
     audioFile = 'time.wav'
     playsound(audioFile)
     audio_config = speech_sdk.AudioConfig(filename=audioFile)
@@ -212,7 +215,7 @@ lab:
     **C#**
     
     ```C#
-    // 处理语音输入
+    // Process speech input
     SpeechRecognitionResult speech = await speechRecognizer.RecognizeOnceAsync();
     if (speech.Reason == ResultReason.RecognizedSpeech)
     {
@@ -234,7 +237,7 @@ lab:
     **Python**
     
     ```Python
-    # 处理语音输入
+    # Process speech input
     speech = speech_recognizer.recognize_once_async().get()
     if speech.reason == speech_sdk.ResultReason.RecognizedSpeech:
         command = speech.text
@@ -277,14 +280,14 @@ lab:
     **C#**
     
     ```C#
-    // 配置语音合成
+    // Configure speech synthesis
     using SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig);
     ```
     
     **Python**
     
     ```Python
-    # 配置语音合成
+    # Configure speech synthesis
     speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config)
     ```
     
@@ -295,7 +298,7 @@ lab:
     **C#**
     
     ```C#
-    // 合成语音输出
+    // Synthesize spoken output
     SpeechSynthesisResult speak = await speechSynthesizer.SpeakTextAsync(responseText);
     if (speak.Reason != ResultReason.SynthesizingAudioCompleted)
     {
@@ -306,7 +309,7 @@ lab:
     **Python**
     
     ```Python
-    # 合成语音输出
+    # Synthesize spoken output
     speak = speech_synthesizer.speak_text_async(response_text).get()
     if speak.reason != speech_sdk.ResultReason.SynthesizingAudioCompleted:
         print(speak.reason)
@@ -339,7 +342,7 @@ lab:
    **C#**
 
     ```C#
-    // 配置语音合成
+    // Configure speech synthesis
     speechConfig.SpeechSynthesisVoiceName = "en-GB-George"; // add this
     using SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig);
     ```
@@ -347,7 +350,7 @@ lab:
     **Python**
     
     ```Python
-    # 配置语音合成
+    # Configure speech synthesis
     speech_config.speech_synthesis_voice_name = 'en-GB-George' # add this
     speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config)
     ```
@@ -377,13 +380,13 @@ lab:
    **C#**
 
     ```C#
-    // 合成语音输出
+    // Synthesize spoken output
     string responseSsml = $@"
         <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>
             <voice name='en-GB-Susan'>
                 {responseText}
                 <break strength='weak'/>
-                可以结束本实验室了！
+                Time to end this lab!
             </voice>
         </speak>";
     SpeechSynthesisResult speak = await speechSynthesizer.SpeakSsmlAsync(responseSsml);
@@ -396,13 +399,13 @@ lab:
     **Python**
     
     ```Python
-    # 合成语音输出
+    # Synthesize spoken output
     responseSsml = " \
         <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'> \
             <voice name='en-GB-Susan'> \
                 {} \
                 <break strength='weak'/> \
-                可以结束本实验室了！\
+                Time to end this lab! \
             </voice> \
         </speak>".format(response_text)
     speak = speech_synthesizer.speak_ssml_async(responseSsml).get()
