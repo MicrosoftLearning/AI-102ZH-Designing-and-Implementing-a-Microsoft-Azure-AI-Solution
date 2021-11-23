@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: '管理认知服务安全'
     module: '模块 2 - 使用认知服务开发 AI 应用'
@@ -52,6 +52,8 @@ lab:
     Web 浏览器标签页随即打开，并提示你登录到 Azure。按照提示操作，然后关闭浏览器标签页并返回到 Visual Studio Code。
 
     > **提示**：如果你有多个订阅，需要确保使用包含认知服务资源的订阅。  使用此命令来确定你当前的订阅，其唯一 **ID** 是返回的 JSON 中的 id 值。
+
+    > **警告**：如果 `az login` 的证书验证失败，请尝试等待几分钟，然后重试。
     >
     > ```
     > az account show
@@ -76,7 +78,7 @@ lab:
 4. 若要测试认知服务，可以使用 **curl**  -  用于处理 HTTP 请求的命令行工具。在 **02-cognitive-security** 文件夹中，打开 **rest-test.cmd** 并编辑其中包含的 **curl** 命令（如下所示），并将 *&lt;yourEndpoint&gt;* 和 *&lt;yourKey&gt;* 分别替换为终结点 URI 和 **Key1** 密钥，以在认知服务资源中使用文本分析 API。
 
     ```
-    curl -X POST "<yourEndpoint>/text/analytics/v3.0/languages?"-H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':[{'id':1,'text':'hello'}]}"
+    curl -X POST "<yourEndpoint>/text/analytics/v3.0/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':[{'id':1,'text':'hello'}]}"
     ```
 
 5. 保存所做的更改，然后在 **02-cognitive-security** 文件夹的集成终端中，运行以下命令：
@@ -131,7 +133,7 @@ lab:
     > **提示**：如果不确定订阅 Id，请使用 **az account show** 命令检索订阅信息 - 订阅 ID 是输出中的 **ID** 属性。
 
     ```
-    az ad sp create-for-rbac -n "https://<spName>" --role owner --scopes subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>
+    az ad sp create-for-rbac -n "api://<spName>" --role owner --scopes subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>
     ```
 
 该命令的输出包括有关新服务主体的信息。输出应如下所示：
@@ -140,7 +142,7 @@ lab:
     {
         "appId": "abcd12345efghi67890jklmn",
         "displayName": "ai-app",
-        "name": "https://ai-app",
+        "name": "http://ai-app",
         "password": "1a2b3c4d5e6f7g8h9i0j",
         "tenant": "1234abcd5678fghi90jklm"
     }
@@ -151,7 +153,7 @@ lab:
 2. 若要为新服务主体分配访问密钥保管库中机密的权限，请运行以下 Azure CLI 命令，将 *&lt;keyVaultName&gt;* 替换为 Azure 密钥保管库资源的名称，并将 *&lt;spName&gt;* 替换为创建服务主体时提供的值。
 
     ```
-    az keyvault set-policy -n <keyVaultName> --spn "https://<spName>" --secret-permissions get list
+    az keyvault set-policy -n <keyVaultName> --spn "api://<spName>" --secret-permissions get list
     ```
 
 ### 在应用程序中使用服务主体
