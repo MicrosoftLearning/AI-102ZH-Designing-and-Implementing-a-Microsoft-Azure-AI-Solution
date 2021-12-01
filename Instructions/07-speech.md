@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: '识别和合成语音'
     module: '模块 4 - 构建支持语音的应用程序'
@@ -281,6 +281,7 @@ lab:
     
     ```C#
     // Configure speech synthesis
+    speechConfig.SpeechSynthesisVoiceName = "en-GB-RyanNeural";
     using SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig);
     ```
     
@@ -288,6 +289,7 @@ lab:
     
     ```Python
     # Configure speech synthesis
+    speech_config.speech_synthesis_voice_name = "en-GB-RyanNeural"
     speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config)
     ```
     
