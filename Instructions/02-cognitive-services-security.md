@@ -126,7 +126,7 @@ lab:
 
 ### 创建服务主体
 
-要访问密钥保管库中的机密，应用程序必须使用拥有对机密的访问权限的服务主体。你将使用 Azure 命令行接口 (CLI) 创建服务主体并授予其对 Azure 保管库中机密的访问权限。
+要访问密钥保管库中的机密，应用程序必须使用拥有对机密的访问权限的服务主体。你将使用 Azure 命令行界面 (CLI) 创建服务主体、查找其对象 ID 并授予对 Azure Vault 中的机密的访问权限。
 
 1. 返回到 Visual Studio Code，然后在 **02-cognitive-security** 文件夹的集成终端中，运行以下 Azure CLI 命令，并将 *&lt;spName&gt;* 替换为应用程序标识的恰当名称（例如 *ai-app*）。另外将 *&lt;subscriptionId&gt;* 和 *&lt;resourceGroup&gt;* 分别替换为订阅 ID 和资源组（包含认知服务和密钥保管库资源）的正确值：
 
@@ -150,10 +150,16 @@ lab:
 
 记下 **appId**、**密码**和**租户**值 - 稍后你将用到这些值（如果关闭此终端，则无法检索密码，因此，务必立刻记下这些值 - 可以将输出粘贴到 Visual Studio Code 中的新文本文件中，以确保以后可以找到所需的值。）
 
-2. 若要为新服务主体分配访问密钥保管库中机密的权限，请运行以下 Azure CLI 命令，将 *&lt;keyVaultName&gt;* 替换为 Azure 密钥保管库资源的名称，并将 *&lt;spName&gt;* 替换为创建服务主体时提供的值。
+2. 要获取服务主体的**对象 ID**，请运行以下 Azure CLI 命令，将 *&lt;appId&gt;* 替换为服务主体的应用 ID 的值。
 
     ```
-    az keyvault set-policy -n <keyVaultName> --spn "api://<spName>" --secret-permissions get list
+    az ad sp show --id <appId> --query objectId --out tsv
+    ```
+
+3. 若要为新的服务主体分配访问密钥保管库中的机密的权限，请运行以下 Azure CLI 命令，将 *&lt;keyVaultName&gt;* 替换为 Azure 密钥保管库资源的名称，并将 *&lt;objectId&gt;* 替换为服务主体的对象 ID 值。
+
+    ```
+    az keyvault set-policy -n <keyVaultName> --object-id <objectId> --secret-permissions get list
     ```
 
 ### 在应用程序中使用服务主体
