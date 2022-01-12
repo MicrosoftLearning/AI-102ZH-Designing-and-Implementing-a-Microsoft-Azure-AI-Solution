@@ -17,7 +17,7 @@ lab:
 如果尚未将 **AI-102-AIEngineer** 代码存储库克隆到你要在此实验室中使用的环境，请按照以下步骤克隆它。否则，请在 Visual Studio Code 中打开克隆的文件夹。
 
 1. 启动 Visual Studio Code。
-2. 打开面板 (Shift+Ctrl+P) 并运行 **Git: Clone** 命令，将 `https://github.com/MicrosoftLearning/AI-102-AIEngineer` 存储库克隆到本地文件夹（具体克隆到哪个文件夹无关紧要）。
+2. 打开面板 (Shift+Ctrl+P) 并运行 **Git: Clone** 命令，将 `https://github.com/MicrosoftLearning/AI-102ZH-Designing-and-Implementing-a-Microsoft-Azure-AI-Solution` 存储库克隆到本地文件夹（具体克隆到哪个文件夹无关紧要）。
 3. 克隆存储库后，在 Visual Studio Code 中打开文件夹。
 4. 等待其他文件安装完毕，以支持存储库中的 C# 代码项目。
 
@@ -149,7 +149,7 @@ lab:
   - **资源组**：*包含语言资源的资源组*
   - **位置**：*与文本分析服务相同的位置*。
   - **定价层**： F0
-  - **应用名称**：*与自动附加了唯一 ID 和 [*.azurewebsites.net*] 的机器**人句柄**相同
+  - **应用名称**： *与自动附加了唯一 ID 和 [*.azurewebsites.net*] 的机器 **人句柄** 相同*
   - **SDK 语言**：*选择 C# 或 Node.js*
   - **QnA 身份验证密钥**：*这应该自动设置为 QnA 知识库的身份验证密钥*
   - **应用服务计划/位置**：*如果存在，可以自动将其设置为合适的计划和位置。如果不存在，请创建一个新计划*

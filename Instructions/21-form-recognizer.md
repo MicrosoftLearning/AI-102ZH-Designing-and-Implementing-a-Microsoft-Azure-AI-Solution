@@ -281,7 +281,7 @@ python test-model.py
     
 3. 查看输出，并观察这一现象：使用标签训练的**模**型的输出提供“CompanyPhoneNumber”和“DatedAs”等字段名称，**与不使**用标签训练的模型的输出不同（它生成了 field-1、field-2 等输出）。  
 
-虽然使用标签训练模型的代码和不使用标签训练模型的代码差异可能不大，但从二者中选择其一确实会改变项目计划需求______。若要使用标签进行训练，则需[创建带标签的文件](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool?tabs=v2-0)。训练过程的选择还会产生不同的模型，进而会根据模型返回的字段和返回结果的置信度影响下游过程。 
+虽然使用标签训练模型的代码和不使用标签训练模型的代码差异可能不大，但从二者中选择其一确实会改变项目计划需求。若要使用标签进行训练，则需[创建带标签的文件](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool?tabs=v2-0)。训练过程的选择还会产生不同的模型，进而会根据模型返回的字段和返回结果的置信度影响下游过程。 
 
 ## 更多信息
 
