@@ -211,7 +211,7 @@ Bot Framework Composer 是一种图像设计器，可用于快速轻松地构建
 
 ```
 [Activity    
-    Text = ${TextInput_Prompt_Kz22lf_text()}    
+    Text = Enter your city.
     SuggestedActions = Cancel
 ]
 ```

@@ -345,7 +345,7 @@ lab:
 
     ```C#
     // Configure speech synthesis
-    speechConfig.SpeechSynthesisVoiceName = "en-GB-RyanNeural"; // add this
+    speechConfig.SpeechSynthesisVoiceName = "en-GB-LibbyNeural"; // add this
     using SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig);
     ```
     
@@ -353,7 +353,7 @@ lab:
     
     ```Python
     # Configure speech synthesis
-    speech_config.speech_synthesis_voice_name = 'en-GB-RyanNeural' # add this
+    speech_config.speech_synthesis_voice_name = 'en-GB-LibbyNeural' # add this
     speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config)
     ```
 

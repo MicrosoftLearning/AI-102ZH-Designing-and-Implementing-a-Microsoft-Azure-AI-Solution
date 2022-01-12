@@ -100,7 +100,7 @@ setup
 
 > **重要事项**： 在继续操作之前，将 SAS URI 粘贴到稍后方便检索的位置（例如 Visual Studio Code 中的新文本文件中）。
 
-15. 在 Azure 门户中，刷新资源组并验证它包含刚刚创建的 Azure 存储帐户。打开存储帐户，并在左侧窗格中选择 **“存储资源管理器”**。 在存储资源管理器中，展开 **“BLOB 容器”** 并选择 **“sampleforms”** 容器以验证已从本地 **21-custom-form/sample-forms** 文件夹上传文件。
+15. 在 Azure 门户中，刷新资源组并验证它包含刚刚创建的 Azure 存储帐户。打开存储帐户，并在左侧窗格中选择“**存储浏览器（预览版）**”。在存储浏览器中，展开“**BLOB 容器**”并选择“**sampleforms**”容器以验证已从本地 **21-custom-form/sample-forms** 文件夹上传文件。
 
 ## 不使用标签训*练*模型
 
@@ -281,7 +281,7 @@ python test-model.py
     
 3. 查看输出，并观察这一现象：使用标签训练的**模**型的输出提供“CompanyPhoneNumber”和“DatedAs”等字段名称，**与不使**用标签训练的模型的输出不同（它生成了 field-1、field-2 等输出）。  
 
-虽然使用标签训练模型的代码和不使用标签训练模型的代码差异可能不大，但从二者中选择其一确实会改变项目计划需求______。若要使用标签进行训练，则需[创建带标签的文件](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool?tabs=v2-0)。训练过程的选择还会产生不同的模型，进而会根据模型返回的字段和返回结果的置信度影响下游过程。 
+虽然使用标签训练模型的代码和不使用标签训练模型的代码差异可能不大，但从二者中选择其一确实会改变项目计划需求。若要使用标签进行训练，则需[创建带标签的文件](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool?tabs=v2-0)。训练过程的选择还会产生不同的模型，进而会根据模型返回的字段和返回结果的置信度影响下游过程。 
 
 ## 更多信息
 

@@ -6,9 +6,9 @@ lab:
 
 # 分析文本
 
-**文本分析 API** 是一种支持文本分析的认知服务，包括语言检测、情绪分析、关键短语提取和实体识别。
+**语言服务**是一种支持文本分析的认知服务，包括语言检测、情绪分析、关键短语提取和实体识别。
 
-例如，假设一家旅行社想要处理已提交到公司网站的酒店评论。通过使用文本分析 API，他们可以确定每条评论所采用的语言、评论所包含的情绪（积极、中立或消极）、可能指示评论中所讨论主题的关键短语，以及命名实体，例如评论中提及的地点、地标或人。
+例如，假设一家旅行社想要处理已提交到公司网站的酒店评论。通过使用语言服务，他们可以确定每条评论所采用的语言、评论所包含的情绪（积极、中立或消极）、可能指示评论中所讨论主题的关键短语，以及命名实体，例如评论中提及的地点、地标或人。
 
 ## 克隆本课程的存储库
 
@@ -36,9 +36,9 @@ lab:
 4. 等待部署完成，然后查看部署详细信息。
 5. 部署资源后，转到该资源并查看其 **“密钥和终结点”** 页面。你将在下一个过程中用到此页面中的终结点和其中一个密钥。
 
-## 准备使用文本分析 SDK
+## 准备将语言 SDK 用于文本分析
 
-在此练习中，你将完成一个已部分实现的客户端应用程序，该应用程序使用文本分析 SDK 来分析酒店评论。
+在此练习中，你将完成一个已部分实现的客户端应用程序，该应用程序使用语言服务文本分析 SDK 来分析酒店评论。
 
 > **备注**： 可选择将该 SDK 用于 **C#** 或 **Python**。在下面的步骤中，请执行适用于你的语言首选项的操作。
 
@@ -73,7 +73,7 @@ lab:
     **C#**
     
     ```C#
-    // 导入命名空间
+    // import namespaces
     using Azure;
     using Azure.AI.TextAnalytics;
     ```
@@ -81,7 +81,7 @@ lab:
     **Python**
 
     ```Python
-    # 导入命名空间
+    # import namespaces
     from azure.core.credentials import AzureKeyCredential
     from azure.ai.textanalytics import TextAnalyticsClient
     ```
@@ -91,7 +91,7 @@ lab:
     **C#**
 
     ```C#
-    // 使用终结点和密钥创建客户端
+    // Create client using endpoint and key
     AzureKeyCredential credentials = new AzureKeyCredential(cogSvcKey);
     Uri endpoint = new Uri(cogSvcEndpoint);
     TextAnalyticsClient CogClient = new TextAnalyticsClient(endpoint, credentials);
@@ -100,7 +100,7 @@ lab:
     **Python**
 
     ```Python
-    # 使用终结点和密钥创建客户端
+    # Create client using endpoint and key
     credential = AzureKeyCredential(cog_key)
     cog_client = TextAnalyticsClient(endpoint=cog_endpoint, credential=credential)
     ```
@@ -130,7 +130,7 @@ lab:
     **C#**
     
     ```C
-    // 获取语言
+    // Get language
     DetectedLanguage detectedLanguage = CogClient.DetectLanguage(text);
     Console.WriteLine($"\nLanguage: {detectedLanguage.Name}");
     ```
@@ -138,7 +138,7 @@ lab:
     **Python**
     
     ```Python
-    # 获取语言
+    # Get language
     detectedLanguage = cog_client.detect_language(documents=[text])[0]
     print('\nLanguage: {}'.format(detectedLanguage.primary_language.name))
     ```
@@ -170,7 +170,7 @@ lab:
     **C#**
     
     ```C
-    // 获取情绪
+    // Get sentiment
     DocumentSentiment sentimentAnalysis = CogClient.AnalyzeSentiment(text);
     Console.WriteLine($"\nSentiment: {sentimentAnalysis.Sentiment}");
     ```
@@ -178,7 +178,7 @@ lab:
     **Python**
     
     ```Python
-    # 获取情绪
+    # Get sentiment
     sentimentAnalysis = cog_client.analyze_sentiment(documents=[text])[0]
     print("\nSentiment: {}".format(sentimentAnalysis.sentiment))
     ```
@@ -208,7 +208,7 @@ lab:
     **C#**
 
     ```C
-    // 获取关键短语
+    // Get key phrases
     KeyPhraseCollection phrases = CogClient.ExtractKeyPhrases(text);
     if (phrases.Count > 0)
     {
@@ -223,7 +223,7 @@ lab:
     **Python**
     
     ```Python
-    # 获取关键短语
+    # Get key phrases
     phrases = cog_client.extract_key_phrases(documents=[text])[0].key_phrases
     if len(phrases) > 0:
         print("\nKey Phrases:")
@@ -256,7 +256,7 @@ lab:
     **C#**
     
     ```C
-    // 获取实体
+    // Get entities
     CategorizedEntityCollection entities = CogClient.RecognizeEntities(text);
     if (entities.Count > 0)
     {
@@ -271,7 +271,7 @@ lab:
     **Python**
     
     ```Python
-    # 获取实体
+    # Get entities
     entities = cog_client.recognize_entities(documents=[text])[0].entities
     if len(entities) > 0:
         print("\nEntities")
@@ -304,7 +304,7 @@ lab:
     **C#**
     
     ```C
-    // 获取链接实体
+    // Get linked entities
     LinkedEntityCollection linkedEntities = CogClient.RecognizeLinkedEntities(text);
     if (linkedEntities.Count > 0)
     {
@@ -319,7 +319,7 @@ lab:
     **Python**
     
     ```Python
-    # 获取链接实体
+    # Get linked entities
     entities = cog_client.recognize_linked_entities(documents=[text])[0].entities
     if len(entities) > 0:
         print("\nLinks")
@@ -345,4 +345,4 @@ lab:
 
 ## 更多信息
 
-如需详细了解如何使用**文本分析**服务，请参阅[文本分析文档](https://docs.microsoft.com/azure/cognitive-services/text-analytics/)。
+如需详细了解如何使用**语言**服务，请参阅[文本分析文档](https://docs.microsoft.com/azure/cognitive-services/language-service/)。
